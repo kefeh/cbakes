@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:cbakes/core/presentation/routes/app_router.gr.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,6 +18,7 @@ class MainWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appRouter = AutoRouter();
+    final textTheme = Theme.of(context).textTheme;
     return ProviderListener(
       provider: initializationProvider,
       onChange: (BuildContext context, value) {
@@ -30,11 +32,23 @@ class MainWidget extends StatelessWidget {
         routerDelegate: appRouter.delegate(),
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
-          textTheme: GoogleFonts.rubikTextTheme(
-            Theme.of(context).textTheme,
-          ).apply(
-            bodyColor: const Color.fromRGBO(51, 70, 91, 1),
-          ),
+          textTheme: GoogleFonts.rubikTextTheme(textTheme)
+              .apply(
+                displayColor: const Color.fromRGBO(33, 45, 59, 1),
+              )
+              .copyWith(
+                headline1: GoogleFonts.roboto(
+                  textStyle: const TextStyle(
+                    fontSize: 72,
+                    fontWeight: FontWeight.w900,
+                    color: Color.fromRGBO(33, 45, 59, 1),
+                  ),
+                ),
+                button: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
           pageTransitionsTheme: const PageTransitionsTheme(builders: {
             TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
             TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
