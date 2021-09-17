@@ -46,7 +46,7 @@ class MainWidget extends StatelessWidget {
                 ),
                 button: const TextStyle(
                   fontSize: 20,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
           pageTransitionsTheme: const PageTransitionsTheme(builders: {

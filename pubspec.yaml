@@ -22,7 +22,7 @@ dependencies:
   marquee: ^2.2.0
 
 dev_dependencies:
-  auto_route_generator: ^2.3.0
+  auto_route_generator: ^2.1.0
   build_runner: ^2.1.1
   flutter_lints: ^1.0.0
   flutter_test:

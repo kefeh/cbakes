@@ -65,59 +65,65 @@ class HomePage extends StatelessWidget {
                             )
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: size / 7),
-                          child: Column(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "The best ",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1!
-                                        .copyWith(fontSize: headerSize),
-                                  ),
-                                  Text(
-                                    "food service",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1!
-                                        .copyWith(fontSize: headerSize),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "for ",
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: size / 7),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "The best ",
                                       style: Theme.of(context)
                                           .textTheme
                                           .headline1!
                                           .copyWith(fontSize: headerSize),
-                                      children: [
-                                        TextSpan(
-                                          text: "Everybody",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                color: const Color.fromRGBO(
-                                                    246, 67, 67, 1),
-                                                fontStyle: FontStyle.italic,
-                                                fontSize: headerSize,
-                                              ),
-                                        ),
-                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                              const ButtonMain(
-                                text: "explore bakery",
-                                backgroundColor:
-                                    Color.fromRGBO(254, 236, 236, 1),
-                                textColor: Color.fromRGBO(246, 67, 67, 1),
-                              ),
-                            ],
+                                    Text(
+                                      "food service",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1!
+                                          .copyWith(fontSize: headerSize),
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: "for ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(fontSize: headerSize),
+                                        children: [
+                                          TextSpan(
+                                            text: "Everybody",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                  color: const Color.fromRGBO(
+                                                      246, 67, 67, 1),
+                                                  fontStyle: FontStyle.italic,
+                                                  fontSize: headerSize,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const ButtonMain(
+                                  text: "explore bakery",
+                                  backgroundColor:
+                                      Color.fromRGBO(254, 236, 236, 1),
+                                  textColor:
+                                      const Color.fromRGBO(246, 67, 67, 1),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -207,25 +213,27 @@ class ButtonMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("textColor is:");
+    print(textColor);
     return ElevatedButton(
       onPressed: () {},
-      child: Text(text),
+      child: Text(
+        text,
+        style: Theme.of(context)
+            .textTheme
+            .button!
+            .copyWith(color: textColor ?? Colors.white),
+      ),
       style: ButtonStyle(
         padding: MaterialStateProperty.all(
-          const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
+          const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
         ),
         backgroundColor: MaterialStateProperty.all(
           backgroundColor,
         ),
-        textStyle: MaterialStateProperty.all(
-          Theme.of(context)
-              .textTheme
-              .button!
-              .copyWith(color: textColor ?? Colors.white),
-        ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(18.0),
           ),
         ),
       ),
