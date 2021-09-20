@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
     final size = MediaQuery.of(context).size.width;
     final widthFactor = size / 7;
     final height = MediaQuery.of(context).size.height;
+    final heightFactor = (height / 8) - 20;
     final headerSize = size * 0.04;
     return Scaffold(
       body: SafeArea(
@@ -37,13 +38,21 @@ class HomePage extends StatelessWidget {
                     alignment: AlignmentDirectional.topEnd,
                     child: SizedBox(
                       width: widthFactor * 1,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Color.fromRGBO(246, 67, 67, 1),
-                          borderRadius: BorderRadius.vertical(
-                            bottom: Radius.circular(30),
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: Color.fromRGBO(246, 67, 67, 1),
+                              borderRadius: BorderRadius.vertical(
+                                bottom: Radius.circular(30),
+                              ),
+                            ),
                           ),
-                        ),
+                          Align(
+                            alignment: AlignmentDirectional.center,
+                            child: HamBurger(padding: heightFactor),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -68,14 +77,14 @@ class HomePage extends StatelessWidget {
                                 Row(
                                   children: [
                                     DroppingButton(
-                                      height: height,
+                                      height: heightFactor,
                                       text: "BAKERY",
                                     ),
                                     SizedBox(
-                                      width: headerSize,
+                                      width: widthFactor / 2,
                                     ),
                                     DroppingButton(
-                                      height: height,
+                                      height: heightFactor,
                                       text: "RESTAURANT",
                                     ),
                                   ],
@@ -220,6 +229,72 @@ class HomePage extends StatelessWidget {
   }
 }
 
+class HamBurger extends StatelessWidget {
+  const HamBurger({
+    Key? key,
+    required this.padding,
+  }) : super(key: key);
+
+  final double padding;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => {},
+      child: Padding(
+        padding: EdgeInsets.only(top: padding - 40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              height: 4,
+              width: 30,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Container(
+              height: 4,
+              width: 20,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Container(
+              height: 4,
+              width: 30,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Container(
+              height: 4,
+              width: 20,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class SmallItem extends StatelessWidget {
   const SmallItem({
     Key? key,
@@ -302,7 +377,7 @@ class DroppingButton extends StatelessWidget {
         right: 10,
       ),
       child: SizedBox(
-        height: (height / 8) - 20,
+        height: height,
         child: Stack(
           alignment: AlignmentDirectional.bottomStart,
           children: [
@@ -317,8 +392,9 @@ class DroppingButton extends StatelessWidget {
               ),
             ),
             ButtonMain(
-                text: text,
-                backgroundColor: const Color.fromRGBO(246, 67, 67, 1)),
+              text: text,
+              backgroundColor: const Color.fromRGBO(246, 67, 67, 1),
+            ),
           ],
         ),
       ),
