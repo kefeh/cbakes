@@ -4,6 +4,7 @@ import 'package:cbakes/core/presentation/routes/app_router.gr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter/services.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
   Future.delayed(
@@ -17,6 +18,10 @@ class MainWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     final appRouter = AutoRouter();
     final textTheme = Theme.of(context).textTheme;
     return ProviderListener(
