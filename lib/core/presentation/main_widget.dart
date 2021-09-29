@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
   Future.delayed(
-    const Duration(seconds: 5),
+    const Duration(seconds: 1),
   );
   return unit;
 });
@@ -28,7 +28,7 @@ class MainWidget extends StatelessWidget {
       provider: initializationProvider,
       onChange: (BuildContext context, value) {
         appRouter.pushAndPopUntil(
-          const HomeRoute(),
+          const CheckoutRoute(),
           predicate: (predicate) => true,
         );
       },
@@ -59,6 +59,8 @@ class MainWidget extends StatelessWidget {
             TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
           }),
           primaryColor: const Color.fromRGBO(51, 70, 91, 1),
+          accentColor: Color.fromRGBO(246, 67, 67, 1),
+          buttonColor: Color.fromRGBO(254, 236, 236, 1),
         ),
       ),
     );

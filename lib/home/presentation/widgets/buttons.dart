@@ -64,8 +64,6 @@ class ButtonMainSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("textColor is:");
-    print(textColor);
     return ElevatedButton(
       onPressed: () {},
       child: Text(
@@ -131,7 +129,7 @@ class DroppingButton extends StatelessWidget {
             ),
             ButtonMain(
               text: text,
-              backgroundColor: const Color.fromRGBO(246, 67, 67, 1),
+              backgroundColor: Theme.of(context).accentColor,
               textSize: textSize,
             ),
           ],
@@ -174,7 +172,7 @@ class DroppingButtonSmall extends StatelessWidget {
             alignment: AlignmentDirectional.bottomCenter,
             child: ButtonMainSmall(
               text: text,
-              backgroundColor: const Color.fromRGBO(246, 67, 67, 1),
+              backgroundColor: Theme.of(context).accentColor,
               textSize: textSize,
             ),
           ),

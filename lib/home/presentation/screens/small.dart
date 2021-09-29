@@ -1,4 +1,5 @@
 import 'package:cbakes/core/presentation/widgets/helper.dart';
+import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:cbakes/home/presentation/widgets/items.dart';
 import 'package:flutter/material.dart';
@@ -22,18 +23,7 @@ class SmallHomePage extends StatelessWidget {
             children: [
               Expanded(
                 flex: 1,
-                child: Container(
-                  color: const Color.fromRGBO(30, 31, 34, 1),
-                  child: Marquee(
-                    text:
-                        "                                    C&C BAKERY                                     C&C RESTAURANT                                    C&C DELIVERIES",
-                    style: GoogleFonts.rubik(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
+                child: AppMarquee(),
               ),
               Expanded(
                 flex: 5,
@@ -118,13 +108,12 @@ class SmallHomePage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  const ButtonMain(
+                                  ButtonMain(
                                     text: "explore bakery",
                                     textSize: 13,
                                     backgroundColor:
-                                        Color.fromRGBO(254, 236, 236, 1),
-                                    textColor:
-                                        const Color.fromRGBO(246, 67, 67, 1),
+                                        Theme.of(context).buttonColor,
+                                    textColor: Theme.of(context).accentColor,
                                   ),
                                 ],
                               ),
@@ -138,8 +127,8 @@ class SmallHomePage extends StatelessWidget {
                       child: Stack(
                         children: [
                           Container(
-                            decoration: const BoxDecoration(
-                              color: Color.fromRGBO(246, 67, 67, 1),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).accentColor,
                               borderRadius: BorderRadius.vertical(
                                 bottom: Radius.circular(30),
                               ),

@@ -26,7 +26,7 @@ class SmallItem extends StatelessWidget {
                         bottomRight: Radius.circular(20.0),
                       ),
                       border: Border.all(
-                        color: const Color.fromRGBO(246, 67, 67, 1),
+                        color: Theme.of(context).accentColor,
                         width: 1,
                       ),
                     ),
@@ -49,7 +49,7 @@ class SmallItem extends StatelessWidget {
                           const BoxConstraints(minWidth: double.infinity),
                       child: ButtonMain(
                         text: "fufu and eru",
-                        backgroundColor: const Color.fromRGBO(246, 67, 67, 1),
+                        backgroundColor: Theme.of(context).accentColor,
                       ),
                     ),
                   ),
@@ -90,7 +90,7 @@ class SmallItemSmall extends StatelessWidget {
                         bottomRight: Radius.circular(15.0),
                       ),
                       border: Border.all(
-                        color: const Color.fromRGBO(246, 67, 67, 1),
+                        color: Theme.of(context).accentColor,
                         width: 1,
                       ),
                     ),
@@ -113,7 +113,7 @@ class SmallItemSmall extends StatelessWidget {
                           const BoxConstraints(minWidth: double.infinity),
                       child: ButtonMainSmall(
                         text: "fufu and eru",
-                        backgroundColor: const Color.fromRGBO(246, 67, 67, 1),
+                        backgroundColor: Theme.of(context).accentColor,
                         textSize: 12,
                       ),
                     ),
