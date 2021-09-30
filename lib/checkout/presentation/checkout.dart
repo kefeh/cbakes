@@ -1,5 +1,8 @@
+import 'package:cbakes/checkout/presentation/widgets/helpers.dart';
+import 'package:cbakes/core/presentation/widgets/helper.dart';
+import 'package:cbakes/checkout/presentation/widgets/items.dart';
 import 'package:cbakes/core/presentation/widgets/marquee.dart';
-import 'package:cbakes/home/presentation/widgets/buttons.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 class CheckoutPage extends StatelessWidget {
@@ -10,6 +13,7 @@ class CheckoutPage extends StatelessWidget {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraint) {
       final double width = constraint.maxWidth;
+      final double widthPropotions = width / 10;
       final double mainPadding = width / 40;
       return Scaffold(
         body: SafeArea(
@@ -20,11 +24,11 @@ class CheckoutPage extends StatelessWidget {
                 child: AppMarquee(),
               ),
               Expanded(
-                flex: 7,
+                flex: 9,
                 child: Row(
                   children: [
-                    Expanded(
-                      flex: 3,
+                    Container(
+                      width: widthPropotions * 7.5,
                       child: Column(
                         children: [
                           Expanded(
@@ -68,224 +72,17 @@ class CheckoutPage extends StatelessWidget {
                                   spacing: mainPadding,
                                   runSpacing: mainPadding,
                                   children: [
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 250,
-                                      height: 300,
-                                      child: Stack(
-                                        alignment:
-                                            AlignmentDirectional.centerEnd,
-                                        children: [
-                                          Align(
-                                            alignment: AlignmentDirectional
-                                                .bottomCenter,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 10.0),
-                                              child: Container(
-                                                height: 215,
-                                                width: 250,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                    color: Theme.of(context)
-                                                        .accentColor,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  color: Colors.white,
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 15.0),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      SizedBox(
-                                                        height: 75,
-                                                        child: Row(
-                                                          children: [
-                                                            Icon(
-                                                              Icons.star,
-                                                              size: 12,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              size: 12,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              size: 12,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              size: 12,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star_half,
-                                                              size: 12,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 90,
-                                                        child: Text(
-                                                            "Every step taken is clearly and thoroughly explained, plus downloadable code for every section of this course."),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 10,
-                                                        child: Text(
-                                                          "1500frs",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: Alignment.topRight,
-                                            child: Stack(
-                                              alignment:
-                                                  AlignmentDirectional.center,
-                                              children: [
-                                                Container(
-                                                  height: 150,
-                                                  width: 150,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100),
-                                                    color: Theme.of(context)
-                                                        .buttonColor,
-                                                  ),
-                                                ),
-                                                Container(
-                                                  width: 130,
-                                                  height: 130,
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Colors.white,
-                                                    image: DecorationImage(
-                                                      fit: BoxFit.fill,
-                                                      image: AssetImage(
-                                                          "assets/images/card.png"),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional.bottomEnd,
-                                            child: ButtonMain(
-                                              text: "add to cart",
-                                              backgroundColor:
-                                                  Theme.of(context).accentColor,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
-                                    Container(
-                                      color: Colors.brown,
-                                      width: 300,
-                                      height: 300,
-                                    ),
+                                    CheckoutItem(),
+                                    CheckoutItem(),
+                                    CheckoutItem(),
+                                    CheckoutItem(),
+                                    CheckoutItem(),
+                                    CheckoutItem(),
+                                    CheckoutItem(),
+                                    CheckoutItem(),
+                                    CheckoutItem(),
+                                    CheckoutItem(),
+                                    CheckoutItem(),
                                   ],
                                 ),
                               ),
@@ -294,10 +91,52 @@ class CheckoutPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        color: Colors.green,
+                    Container(
+                      width: widthPropotions * 2.5,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 80.0),
+                        child: Stack(
+                          children: [
+                            Positioned.fill(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).accentColor,
+                                  borderRadius: BorderRadius.vertical(
+                                    bottom: Radius.circular(30),
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    SideItem(
+                                      headingText: "Fufu and Njama Njama",
+                                      price: 1500,
+                                      quantity: 1,
+                                    ),
+                                    SideItem(
+                                      headingText: "Rice and Tomatoe sauce",
+                                      price: 2000,
+                                      quantity: 2,
+                                    ),
+                                    SideItem(
+                                      headingText: "Riz saute",
+                                      price: 100,
+                                      quantity: 1,
+                                    ),
+                                    SideItem(
+                                      headingText: "Fufu and Eru",
+                                      price: 5000,
+                                      quantity: 3,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional.centerEnd,
+                              child: HamBurger.large(40),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

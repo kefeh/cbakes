@@ -20,6 +20,7 @@ dependencies:
       ref: 147be70df096015af0633456a951d8f2f9c66dc9
       path: packages/hooks_riverpod
   marquee: ^2.2.0
+  material_design_icons_flutter: 5.0.5955-rc.1
 
 dev_dependencies:
   auto_route_generator: ^2.1.0
