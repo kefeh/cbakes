@@ -164,7 +164,7 @@ class SideItem extends StatelessWidget {
                           fontSize: mediumSize ? 12 : 14,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(right: 15.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
