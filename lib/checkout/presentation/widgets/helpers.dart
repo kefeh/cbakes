@@ -88,17 +88,20 @@ class ItemHeading extends StatelessWidget {
     Key? key,
     required this.text,
     required this.color,
+    this.fontSize,
   }) : super(key: key);
   final String text;
   final Color color;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.start,
       style: GoogleFonts.rubik(
-        fontSize: 14,
+        fontSize: fontSize ?? 14,
         fontWeight: FontWeight.w800,
         color: color,
       ),
@@ -111,9 +114,11 @@ class ItemPriceText extends StatelessWidget {
     Key? key,
     required this.text,
     required this.color,
+    this.fontSize,
   }) : super(key: key);
   final String text;
   final Color color;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +127,7 @@ class ItemPriceText extends StatelessWidget {
       textAlign: TextAlign.left,
       style: GoogleFonts.rubik(
           color: color,
-          fontSize: 14,
+          fontSize: fontSize ?? 14,
           fontStyle: FontStyle.normal,
           fontWeight: FontWeight.w700),
     );
@@ -133,15 +138,17 @@ class CbIcons extends StatelessWidget {
   const CbIcons({
     Key? key,
     required this.icon,
+    required this.size,
   }) : super(key: key);
 
   final IconData icon;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 30,
-      width: 30,
+      height: size,
+      width: size,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(5),
@@ -149,7 +156,7 @@ class CbIcons extends StatelessWidget {
       child: Center(
         child: Icon(
           icon,
-          size: 30,
+          size: size - 5,
           color: Theme.of(context).accentColor,
         ),
       ),
