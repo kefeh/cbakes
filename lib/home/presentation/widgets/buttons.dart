@@ -7,19 +7,19 @@ class ButtonMain extends StatelessWidget {
     required this.backgroundColor,
     this.textColor,
     this.textSize,
+    this.onPressed,
   }) : super(key: key);
 
   final String text;
   final Color backgroundColor;
   final Color? textColor;
   final double? textSize;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    print("textColor is:");
-    print(textColor);
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: Text(
         text,
         overflow: TextOverflow.ellipsis,
