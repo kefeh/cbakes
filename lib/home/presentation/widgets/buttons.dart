@@ -18,29 +18,41 @@ class ButtonMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      child: Text(
-        text,
-        overflow: TextOverflow.ellipsis,
-        style: Theme.of(context).textTheme.button!.copyWith(
-              color: textColor ?? Colors.white,
-              fontSize: textSize ?? 16,
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.6),
+            offset: Offset(1, 1),
+            blurRadius: 2,
+          )
+        ],
+        borderRadius: BorderRadius.circular(18.0),
       ),
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all(
-          EdgeInsets.symmetric(
-            vertical: textSize ?? 20.0,
-            horizontal: 2 * (textSize ?? 20.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        child: Text(
+          text,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.button!.copyWith(
+                color: textColor ?? Colors.white,
+                fontSize: textSize ?? 16,
+              ),
+        ),
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(
+            EdgeInsets.symmetric(
+              vertical: textSize ?? 20.0,
+              horizontal: 2 * (textSize ?? 20.0),
+            ),
           ),
-        ),
-        backgroundColor: MaterialStateProperty.all(
-          backgroundColor,
-        ),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.0),
+          backgroundColor: MaterialStateProperty.all(
+            backgroundColor,
+          ),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            ),
           ),
         ),
       ),

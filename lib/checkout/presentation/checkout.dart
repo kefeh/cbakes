@@ -3,7 +3,7 @@ import 'package:cbakes/core/presentation/widgets/helper.dart';
 import 'package:cbakes/checkout/presentation/widgets/items.dart';
 import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 
 class CheckoutPage extends StatelessWidget {
@@ -14,7 +14,9 @@ class CheckoutPage extends StatelessWidget {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraint) {
       final double width = constraint.maxWidth;
+      final double height = constraint.maxHeight;
       final double widthPropotions = width / 10;
+      final double heightPropotions = height / 10;
       final double sideBarWidth = widthPropotions * 2.5;
       final double mainPadding = width / 40;
       final bool smallScreen = width < 860;
@@ -203,77 +205,191 @@ class CheckoutPage extends StatelessWidget {
                                         onPressed: () {
                                           showDialog(
                                             context: context,
-                                            builder: (_) => AlertDialog(
+                                            builder: (_) => Dialog(
                                                 backgroundColor:
-                                                    Theme.of(context)
+                                                    Colors.transparent,
+                                                child: Container(
+                                                  height: heightPropotions * 7,
+                                                  width: widthPropotions * 7,
+                                                  decoration: BoxDecoration(
+                                                    color: Theme.of(context)
                                                         .accentColor,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                content: Column(
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      children: [
-                                                        Container(
-                                                          width: 100,
-                                                          height: 100,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          width: 100,
-                                                          height: 100,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          width: 100,
-                                                          height: 100,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Expanded(
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius:
-                                                              BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    20),
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    20),
-                                                          ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Container(
+                                                        height:
+                                                            heightPropotions *
+                                                                2.5,
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            PayMethodCard(
+                                                              widthPropotions:
+                                                                  widthPropotions,
+                                                              imageUrl:
+                                                                  "assets/images/hand.png",
+                                                              caption:
+                                                                  "PAY PHYSICALLY",
+                                                            ),
+                                                            PayMethodCard(
+                                                              widthPropotions:
+                                                                  widthPropotions,
+                                                              imageUrl:
+                                                                  "assets/images/momo.png",
+                                                              caption:
+                                                                  "MTN MOMO",
+                                                              scale: 1.0,
+                                                            ),
+                                                            PayMethodCard(
+                                                              widthPropotions:
+                                                                  widthPropotions,
+                                                              imageUrl:
+                                                                  "assets/images/orange.png",
+                                                              caption:
+                                                                  "ORANGE MOMO",
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
-                                                    )
-                                                  ],
+                                                      Expanded(
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        (20)),
+                                                          ),
+                                                          width:
+                                                              widthPropotions *
+                                                                  7,
+                                                          child: Padding(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        widthPropotions),
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    CheckoutCaptionText(
+                                                                      caption:
+                                                                          "Choose Method",
+                                                                      color: Colors
+                                                                          .black,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceEvenly,
+                                                                      children: [
+                                                                        ButtonMain(
+                                                                          text:
+                                                                              "Collect",
+                                                                          backgroundColor:
+                                                                              Colors.white,
+                                                                          textColor:
+                                                                              Colors.black,
+                                                                        ),
+                                                                        ButtonMain(
+                                                                          text:
+                                                                              "Delivery",
+                                                                          backgroundColor:
+                                                                              Colors.white,
+                                                                          textColor:
+                                                                              Colors.black,
+                                                                        ),
+                                                                        ButtonMain(
+                                                                          text:
+                                                                              "Eat there",
+                                                                          backgroundColor:
+                                                                              Theme.of(context).buttonColor,
+                                                                          textColor: const Color.fromRGBO(
+                                                                              246,
+                                                                              67,
+                                                                              67,
+                                                                              1),
+                                                                        ),
+                                                                      ],
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                CheckoutCaptionText(
+                                                                  caption:
+                                                                      "4000frs",
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 28,
+                                                                ),
+                                                                Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    CheckoutCaptionText(
+                                                                      caption:
+                                                                          "Enter Your Phone Number",
+                                                                      color: Colors
+                                                                          .black,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceEvenly,
+                                                                      children: [
+                                                                        Container(
+                                                                          width:
+                                                                              widthPropotions * 2,
+                                                                          height:
+                                                                              50,
+                                                                          child:
+                                                                              TextFormField(
+                                                                            decoration:
+                                                                                InputDecoration(
+                                                                              contentPadding: const EdgeInsets.all(8.0),
+                                                                              border: OutlineInputBorder(
+                                                                                borderSide: BorderSide(
+                                                                                  color: const Color.fromRGBO(246, 67, 67, 1),
+                                                                                ),
+                                                                                borderRadius: BorderRadius.circular(10.0),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        ButtonMain(
+                                                                          text:
+                                                                              "PROCEED",
+                                                                          backgroundColor:
+                                                                              Theme.of(context).accentColor,
+                                                                          textColor:
+                                                                              Colors.white,
+                                                                          textSize:
+                                                                              18,
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
                                                 )),
                                           );
                                         },

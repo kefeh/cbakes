@@ -163,3 +163,87 @@ class CbIcons extends StatelessWidget {
     );
   }
 }
+
+class PayMethodCard extends StatelessWidget {
+  const PayMethodCard({
+    Key? key,
+    required this.widthPropotions,
+    required this.imageUrl,
+    required this.caption,
+    this.scale = 0.8,
+  }) : super(key: key);
+
+  final double widthPropotions;
+  final double scale;
+  final String imageUrl;
+  final String caption;
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.scale(
+      scale: scale,
+      child: AnimatedContainer(
+        duration: Duration(
+          milliseconds: 200,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: widthPropotions,
+              height: widthPropotions * 0.7,
+              decoration: BoxDecoration(
+                color: Color(0xFFF75555),
+                border: Border.all(color: Colors.white30),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0, 3),
+                    color: Colors.black38,
+                    blurRadius: 5.0,
+                    spreadRadius: 1.0,
+                  )
+                ],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(widthPropotions / 10),
+                child: Image(
+                  image: AssetImage(imageUrl),
+                ),
+              ),
+            ),
+            CheckoutCaptionText(caption: caption)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CheckoutCaptionText extends StatelessWidget {
+  const CheckoutCaptionText({
+    Key? key,
+    required this.caption,
+    this.color = Colors.white,
+    this.fontSize = 14,
+  }) : super(key: key);
+
+  final String caption;
+  final Color color;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: Text(
+        caption,
+        style: GoogleFonts.rubik(
+          fontWeight: FontWeight.bold,
+          fontSize: fontSize,
+          color: color,
+        ),
+      ),
+    );
+  }
+}
