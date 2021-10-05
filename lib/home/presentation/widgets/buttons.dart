@@ -1,6 +1,8 @@
+import 'package:cbakes/checkout/application/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ButtonMain extends StatelessWidget {
+class ButtonMain extends ConsumerWidget {
   const ButtonMain({
     Key? key,
     required this.text,
@@ -16,8 +18,53 @@ class ButtonMain extends StatelessWidget {
   final double? textSize;
   final void Function()? onPressed;
 
+  static const accentColorLight = Color.fromRGBO(254, 236, 236, 1);
+  static const accentColor = Color.fromRGBO(246, 67, 67, 1);
+
+  factory ButtonMain.active({
+    required String text,
+    double? textSize,
+    void Function()? onPressed,
+  }) {
+    return ButtonMain(
+      text: text,
+      backgroundColor: accentColor,
+      textColor: Colors.white,
+      textSize: textSize,
+      onPressed: onPressed,
+    );
+  }
+
+  factory ButtonMain.activeLight({
+    required String text,
+    double? textSize,
+    void Function()? onPressed,
+  }) {
+    return ButtonMain(
+      text: text,
+      backgroundColor: accentColorLight,
+      textColor: accentColor,
+      textSize: textSize,
+      onPressed: onPressed,
+    );
+  }
+
+  factory ButtonMain.inActive({
+    required String text,
+    double? textSize,
+    void Function()? onPressed,
+  }) {
+    return ButtonMain(
+      text: text,
+      backgroundColor: Colors.white,
+      textColor: Colors.black,
+      textSize: textSize,
+      onPressed: onPressed,
+    );
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -30,7 +77,10 @@ class ButtonMain extends StatelessWidget {
         borderRadius: BorderRadius.circular(18.0),
       ),
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: () {
+          ref.read(activeDeliveryBtnProvider.notifier).setActive(text);
+          onPressed!();
+        },
         child: Text(
           text,
           overflow: TextOverflow.ellipsis,

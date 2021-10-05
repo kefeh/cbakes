@@ -5,3 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final activeProvider =
     StateNotifierProvider<PaymentMethodActiveNotifier, GlobalKey?>(
         (ref) => PaymentMethodActiveNotifier(null));
+
+final activeDeliveryBtnProvider =
+    StateNotifierProvider<DeliveryMethodActiveNotifier, String?>(
+        (ref) => DeliveryMethodActiveNotifier(null));

@@ -23,6 +23,7 @@ class CheckoutDialogue extends ConsumerWidget {
     final GlobalKey paymentMethodKey3 = GlobalKey();
 
     ref.watch(activeProvider.notifier).setActive(paymentMethodKey1);
+    ref.watch(activeDeliveryBtnProvider.notifier).setActive("Collect");
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -80,26 +81,36 @@ class CheckoutDialogue extends ConsumerWidget {
                             caption: "Choose Method",
                             color: Colors.black,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ButtonMain(
-                                text: "Collect",
-                                backgroundColor: Colors.white,
-                                textColor: Colors.black,
-                              ),
-                              ButtonMain(
-                                text: "Delivery",
-                                backgroundColor: Colors.white,
-                                textColor: Colors.black,
-                              ),
-                              ButtonMain(
-                                text: "Eat there",
-                                backgroundColor: Theme.of(context).buttonColor,
-                                textColor: const Color.fromRGBO(246, 67, 67, 1),
-                              ),
-                            ],
-                          )
+                          Consumer(builder: (_, ref, __) {
+                            final deliverActiveId =
+                                ref.watch(activeDeliveryBtnProvider);
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                deliverActiveId == "Collect"
+                                    ? ButtonMain.active(
+                                        text: "Collect",
+                                      )
+                                    : ButtonMain.inActive(
+                                        text: "Collect",
+                                      ),
+                                deliverActiveId == "Delivery"
+                                    ? ButtonMain.active(
+                                        text: "Delivery",
+                                      )
+                                    : ButtonMain.inActive(
+                                        text: "Delivery",
+                                      ),
+                                deliverActiveId == "Eat there"
+                                    ? ButtonMain.active(
+                                        text: "Eat there",
+                                      )
+                                    : ButtonMain.inActive(
+                                        text: "Eat there",
+                                      ),
+                              ],
+                            );
+                          })
                         ],
                       ),
                       CheckoutCaptionText(
@@ -139,11 +150,8 @@ class CheckoutDialogue extends ConsumerWidget {
                                       ),
                                     ),
                                   ),
-                                ButtonMain(
+                                ButtonMain.active(
                                   text: "PROCEED",
-                                  backgroundColor:
-                                      Theme.of(context).accentColor,
-                                  textColor: Colors.white,
                                   textSize: 18,
                                 ),
                               ],
