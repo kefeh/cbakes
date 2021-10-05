@@ -1,4 +1,6 @@
+import 'package:cbakes/checkout/application/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CircularImage extends StatelessWidget {
@@ -164,56 +166,62 @@ class CbIcons extends StatelessWidget {
   }
 }
 
-class PayMethodCard extends StatelessWidget {
+class PayMethodCard extends ConsumerWidget {
   const PayMethodCard({
     Key? key,
     required this.widthPropotions,
     required this.imageUrl,
     required this.caption,
-    this.scale = 0.8,
   }) : super(key: key);
 
   final double widthPropotions;
-  final double scale;
   final String imageUrl;
   final String caption;
 
   @override
-  Widget build(BuildContext context) {
-    return Transform.scale(
-      scale: scale,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final active = ref.watch(activeProvider);
+    return GestureDetector(
+      onTap: () {
+        final anotherNotifier = ref.read(activeProvider.notifier);
+        anotherNotifier.setActive(key as GlobalKey);
+      },
       child: AnimatedContainer(
+        curve: Curves.easeInToLinear,
         duration: Duration(
           milliseconds: 200,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: widthPropotions,
-              height: widthPropotions * 0.7,
-              decoration: BoxDecoration(
-                color: Color(0xFFF75555),
-                border: Border.all(color: Colors.white30),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 3),
-                    color: Colors.black38,
-                    blurRadius: 5.0,
-                    spreadRadius: 1.0,
-                  )
-                ],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(widthPropotions / 10),
-                child: Image(
-                  image: AssetImage(imageUrl),
+        child: Transform.scale(
+          scale: active == key ? 1.0 : 0.8,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: widthPropotions,
+                height: widthPropotions * 0.7,
+                decoration: BoxDecoration(
+                  color: Color(0xFFF75555),
+                  border: Border.all(color: Colors.white30),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 3),
+                      color: Colors.black38,
+                      blurRadius: 5.0,
+                      spreadRadius: 1.0,
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(widthPropotions / 10),
+                  child: Image(
+                    image: AssetImage(imageUrl),
+                  ),
                 ),
               ),
-            ),
-            CheckoutCaptionText(caption: caption)
-          ],
+              CheckoutCaptionText(caption: caption)
+            ],
+          ),
         ),
       ),
     );

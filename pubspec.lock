@@ -230,13 +230,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_hooks:
-    dependency: transitive
-    description:
-      name: flutter_hooks
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.16.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -245,14 +238,12 @@ packages:
     source: hosted
     version: "1.0.4"
   flutter_riverpod:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
-      path: "packages/flutter_riverpod"
-      ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      resolved-ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      url: "https://github.com/rrousselGit/river_pod.git"
-    source: git
-    version: "0.14.0+2"
+      name: flutter_riverpod
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0-dev.7"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -293,15 +284,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  hooks_riverpod:
-    dependency: "direct main"
-    description:
-      path: "packages/hooks_riverpod"
-      ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      resolved-ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      url: "https://github.com/rrousselGit/river_pod.git"
-    source: git
-    version: "0.14.0+2"
   http:
     dependency: transitive
     description:
@@ -492,14 +474,12 @@ packages:
     source: hosted
     version: "1.0.0"
   riverpod:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "packages/riverpod"
-      ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      resolved-ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      url: "https://github.com/rrousselGit/river_pod.git"
-    source: git
-    version: "0.14.0+1"
+      name: riverpod
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0-dev.7"
   shelf:
     dependency: transitive
     description:
