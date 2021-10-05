@@ -13,8 +13,10 @@ dependencies:
   dartz: ^0.10.0
   flutter:
     sdk: flutter
+  flutter_hooks: ^0.18.0
   flutter_riverpod: ^1.0.0-dev.7
   google_fonts: ^2.1.0
+  hooks_riverpod: ^1.0.0-dev.7
   marquee: ^2.2.0
   material_design_icons_flutter: 5.0.5955-rc.1
 

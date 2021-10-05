@@ -1,8 +1,10 @@
+import 'package:cbakes/checkout/application/providers.dart';
 import 'package:cbakes/checkout/presentation/widgets/helpers.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CheckoutDialogue extends StatelessWidget {
+class CheckoutDialogue extends ConsumerWidget {
   const CheckoutDialogue({
     Key? key,
     required this.heightPropotions,
@@ -13,11 +15,12 @@ class CheckoutDialogue extends StatelessWidget {
   final double widthPropotions;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final GlobalKey paymentMethodKey1 = GlobalKey();
     final GlobalKey paymentMethodKey2 = GlobalKey();
     final GlobalKey paymentMethodKey3 = GlobalKey();
 
+    ref.watch(activeProvider.notifier).setActive(paymentMethodKey1);
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(

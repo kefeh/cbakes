@@ -1,7 +1,9 @@
 import 'package:cbakes/checkout/application/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CircularImage extends StatelessWidget {
   const CircularImage({
@@ -166,7 +168,7 @@ class CbIcons extends StatelessWidget {
   }
 }
 
-class PayMethodCard extends ConsumerWidget {
+class PayMethodCard extends HookConsumerWidget {
   const PayMethodCard({
     Key? key,
     required this.widthPropotions,
@@ -181,47 +183,53 @@ class PayMethodCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final active = ref.watch(activeProvider);
+    final double scaleStart = active == key ? 1.0 : 0.8;
+    final _controller = useAnimationController(
+      duration: Duration(milliseconds: 200),
+      initialValue: scaleStart,
+      lowerBound: 0.8,
+      upperBound: 1.0,
+    );
+    final Animation<double> _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    );
+    scaleStart == 1.0 ? _controller.forward() : _controller.reverse();
     return GestureDetector(
       onTap: () {
         final anotherNotifier = ref.read(activeProvider.notifier);
         anotherNotifier.setActive(key as GlobalKey);
       },
-      child: AnimatedContainer(
-        curve: Curves.easeInToLinear,
-        duration: Duration(
-          milliseconds: 200,
-        ),
-        child: Transform.scale(
-          scale: active == key ? 1.0 : 0.8,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: widthPropotions,
-                height: widthPropotions * 0.7,
-                decoration: BoxDecoration(
-                  color: Color(0xFFF75555),
-                  border: Border.all(color: Colors.white30),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 3),
-                      color: Colors.black38,
-                      blurRadius: 5.0,
-                      spreadRadius: 1.0,
-                    )
-                  ],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(widthPropotions / 10),
-                  child: Image(
-                    image: AssetImage(imageUrl),
-                  ),
+      child: ScaleTransition(
+        scale: _animation,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: widthPropotions,
+              height: widthPropotions * 0.7,
+              decoration: BoxDecoration(
+                color: Color(0xFFF75555),
+                border: Border.all(color: Colors.white30),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0, 3),
+                    color: Colors.black38,
+                    blurRadius: 5.0,
+                    spreadRadius: 1.0,
+                  )
+                ],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(widthPropotions / 10),
+                child: Image(
+                  image: AssetImage(imageUrl),
                 ),
               ),
-              CheckoutCaptionText(caption: caption)
-            ],
-          ),
+            ),
+            CheckoutCaptionText(caption: caption)
+          ],
         ),
       ),
     );
