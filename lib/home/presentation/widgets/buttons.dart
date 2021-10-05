@@ -77,10 +77,12 @@ class ButtonMain extends ConsumerWidget {
         borderRadius: BorderRadius.circular(18.0),
       ),
       child: ElevatedButton(
-        onPressed: () {
-          ref.read(activeDeliveryBtnProvider.notifier).setActive(text);
-          onPressed!();
-        },
+        onPressed: (onPressed != null)
+            ? () {
+                ref.read(activeDeliveryBtnProvider.notifier).setActive(text);
+                onPressed!();
+              }
+            : null,
         child: Text(
           text,
           overflow: TextOverflow.ellipsis,

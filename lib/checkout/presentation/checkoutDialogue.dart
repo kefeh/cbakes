@@ -1,4 +1,5 @@
 import 'package:cbakes/checkout/application/providers.dart';
+import 'package:cbakes/checkout/dormain/delivery_options.dart';
 import 'package:cbakes/checkout/presentation/widgets/helpers.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,12 @@ class CheckoutDialogue extends ConsumerWidget {
     final GlobalKey paymentMethodKey2 = GlobalKey();
     final GlobalKey paymentMethodKey3 = GlobalKey();
 
+    final List<DeliveryOption> deliveryOptions = DeliveryOption.options;
+
     ref.watch(activeProvider.notifier).setActive(paymentMethodKey1);
-    ref.watch(activeDeliveryBtnProvider.notifier).setActive("Collect");
+    ref
+        .watch(activeDeliveryBtnProvider.notifier)
+        .setActive(deliveryOptions[0].name);
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -87,27 +92,16 @@ class CheckoutDialogue extends ConsumerWidget {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                deliverActiveId == "Collect"
-                                    ? ButtonMain.active(
-                                        text: "Collect",
-                                      )
-                                    : ButtonMain.inActive(
-                                        text: "Collect",
-                                      ),
-                                deliverActiveId == "Delivery"
-                                    ? ButtonMain.active(
-                                        text: "Delivery",
-                                      )
-                                    : ButtonMain.inActive(
-                                        text: "Delivery",
-                                      ),
-                                deliverActiveId == "Eat there"
-                                    ? ButtonMain.active(
-                                        text: "Eat there",
-                                      )
-                                    : ButtonMain.inActive(
-                                        text: "Eat there",
-                                      ),
+                                for (DeliveryOption option in deliveryOptions)
+                                  deliverActiveId == option.name
+                                      ? ButtonMain.active(
+                                          text: option.name,
+                                          onPressed: () {},
+                                        )
+                                      : ButtonMain.inActive(
+                                          text: option.name,
+                                          onPressed: () {},
+                                        ),
                               ],
                             );
                           })
@@ -153,6 +147,7 @@ class CheckoutDialogue extends ConsumerWidget {
                                 ButtonMain.active(
                                   text: "PROCEED",
                                   textSize: 18,
+                                  onPressed: null,
                                 ),
                               ],
                             ),
