@@ -14,6 +14,8 @@ class CheckoutDialogue extends ConsumerWidget {
   final double heightPropotions;
   final double widthPropotions;
 
+  void initialiseActive(WidgetRef ref, GlobalKey key) {}
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final GlobalKey paymentMethodKey1 = GlobalKey();
@@ -21,6 +23,7 @@ class CheckoutDialogue extends ConsumerWidget {
     final GlobalKey paymentMethodKey3 = GlobalKey();
 
     ref.watch(activeProvider.notifier).setActive(paymentMethodKey1);
+
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -104,42 +107,50 @@ class CheckoutDialogue extends ConsumerWidget {
                         color: Colors.black,
                         fontSize: 28,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CheckoutCaptionText(
-                            caption: "Enter Your Phone Number",
-                            color: Colors.black,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                width: widthPropotions * 2,
-                                height: 50,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.all(8.0),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: const Color.fromRGBO(
-                                            246, 67, 67, 1),
+                      Consumer(builder: (_, ref, __) {
+                        final active = ref.watch(activeProvider);
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (active != (paymentMethodKey1))
+                              CheckoutCaptionText(
+                                caption: "Enter Your Phone Number",
+                                color: Colors.black,
+                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                if (active != (paymentMethodKey1))
+                                  Container(
+                                    width: widthPropotions * 2,
+                                    height: 50,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                        contentPadding:
+                                            const EdgeInsets.all(8.0),
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: const Color.fromRGBO(
+                                                246, 67, 67, 1),
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
                                       ),
-                                      borderRadius: BorderRadius.circular(10.0),
                                     ),
                                   ),
+                                ButtonMain(
+                                  text: "PROCEED",
+                                  backgroundColor:
+                                      Theme.of(context).accentColor,
+                                  textColor: Colors.white,
+                                  textSize: 18,
                                 ),
-                              ),
-                              ButtonMain(
-                                text: "PROCEED",
-                                backgroundColor: Theme.of(context).accentColor,
-                                textColor: Colors.white,
-                                textSize: 18,
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
+                              ],
+                            ),
+                          ],
+                        );
+                      })
                     ],
                   ),
                 ),
