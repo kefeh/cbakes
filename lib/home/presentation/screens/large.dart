@@ -1,3 +1,4 @@
+import 'package:cbakes/core/dormain/food_item.dart';
 import 'package:cbakes/core/presentation/widgets/helper.dart';
 import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
@@ -16,6 +17,8 @@ class LargeHomePage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final heightFactor = (height / 8) - 20;
     final headerSize = size * 0.04;
+
+    final List<FoodItem> foodItems = FoodItem.items;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -150,12 +153,8 @@ class LargeHomePage extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        ButtonMain(
+                                        ButtonMain.activeLight(
                                           text: "explore bakery",
-                                          backgroundColor:
-                                              Theme.of(context).buttonColor,
-                                          textColor: const Color.fromRGBO(
-                                              246, 67, 67, 1),
                                         ),
                                       ],
                                     ),
@@ -201,14 +200,16 @@ class LargeHomePage extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: ListView.separated(
-                        itemCount: 7,
+                        itemCount: foodItems.length > 7 ? 7 : foodItems.length,
                         separatorBuilder: (BuildContext context, int index) =>
                             SizedBox(
                           width: (widthFactor / 2) - 30,
                         ),
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, int _) {
-                          return SmallItem();
+                        itemBuilder: (BuildContext context, int index) {
+                          return SmallItem(
+                            foodItem: foodItems[index],
+                          );
                         },
                       ),
                     ),

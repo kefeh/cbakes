@@ -1,10 +1,14 @@
+import 'package:cbakes/core/dormain/food_item.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
 class SmallItem extends StatelessWidget {
   const SmallItem({
     Key? key,
+    required this.foodItem,
   }) : super(key: key);
+
+  final FoodItem foodItem;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +38,7 @@ class SmallItem extends StatelessWidget {
                 ),
                 ClipOval(
                   child: Image.asset(
-                    "assets/images/card.png",
+                    foodItem.imageUrl,
                     width: 140,
                     height: 140,
                     fit: BoxFit.cover,
@@ -48,7 +52,7 @@ class SmallItem extends StatelessWidget {
                       constraints:
                           const BoxConstraints(minWidth: double.infinity),
                       child: ButtonMain(
-                        text: "fufu and eru",
+                        text: foodItem.name,
                         backgroundColor: Theme.of(context).accentColor,
                       ),
                     ),
@@ -66,7 +70,10 @@ class SmallItem extends StatelessWidget {
 class SmallItemSmall extends StatelessWidget {
   const SmallItemSmall({
     Key? key,
+    required this.foodItem,
   }) : super(key: key);
+
+  final FoodItem foodItem;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +105,7 @@ class SmallItemSmall extends StatelessWidget {
                 ),
                 ClipOval(
                   child: Image.asset(
-                    "assets/images/card.png",
+                    foodItem.imageUrl,
                     width: width / 5,
                     height: width / 5,
                     fit: BoxFit.cover,
@@ -112,7 +119,7 @@ class SmallItemSmall extends StatelessWidget {
                       constraints:
                           const BoxConstraints(minWidth: double.infinity),
                       child: ButtonMainSmall(
-                        text: "fufu and eru",
+                        text: foodItem.name,
                         backgroundColor: Theme.of(context).accentColor,
                         textSize: 12,
                       ),

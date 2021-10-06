@@ -1,3 +1,4 @@
+import 'package:cbakes/core/dormain/food_item.dart';
 import 'package:cbakes/core/presentation/widgets/helper.dart';
 import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
@@ -16,6 +17,8 @@ class SmallHomePage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final heightFactor = (height / 8) - 30;
     final headerSize = size * 0.1;
+
+    final List<FoodItem> foodItems = FoodItem.items;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -167,14 +170,17 @@ class SmallHomePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: ListView.separated(
-                          itemCount: 7,
+                          itemCount:
+                              foodItems.length > 7 ? 7 : foodItems.length,
                           separatorBuilder: (BuildContext context, int index) =>
                               SizedBox(
                             width: (widthFactor / 3),
                           ),
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (BuildContext context, int _) {
-                            return SmallItemSmall();
+                          itemBuilder: (BuildContext context, int index) {
+                            return SmallItemSmall(
+                              foodItem: foodItems[index],
+                            );
                           },
                         ),
                       ),

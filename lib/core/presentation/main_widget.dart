@@ -27,7 +27,7 @@ class MainWidget extends ConsumerWidget {
     ref.listen(initializationProvider, (_) {
       print("something has just changed");
       appRouter.pushAndPopUntil(
-        const CheckoutRoute(),
+        const HomeRoute(),
         predicate: (predicate) => true,
       );
       print("router done");
