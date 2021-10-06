@@ -1,5 +1,6 @@
 import 'package:cbakes/checkout/application/providers.dart';
 import 'package:cbakes/checkout/dormain/delivery_options.dart';
+import 'package:cbakes/checkout/dormain/pay_method_card.dart';
 import 'package:cbakes/checkout/presentation/widgets/helpers.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +20,12 @@ class CheckoutDialogue extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final GlobalKey paymentMethodKey1 = GlobalKey();
-    final GlobalKey paymentMethodKey2 = GlobalKey();
-    final GlobalKey paymentMethodKey3 = GlobalKey();
-
     final List<DeliveryOption> deliveryOptions = DeliveryOption.options;
+    final List<PayMethodCardItem> payMethodItems =
+        PayMethodCardItem.payCardItems;
 
-    ref.watch(activeProvider.notifier).setActive(paymentMethodKey1);
+    ref.watch(activeProvider.notifier).setActive(payMethodItems[0].key);
+
     ref
         .watch(activeDeliveryBtnProvider.notifier)
         .setActive(deliveryOptions[0].name);
@@ -46,24 +46,13 @@ class CheckoutDialogue extends ConsumerWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  PayMethodCard(
-                    key: paymentMethodKey1,
-                    widthPropotions: widthPropotions,
-                    imageUrl: "assets/images/hand.png",
-                    caption: "PAY PHYSICALLY",
-                  ),
-                  PayMethodCard(
-                    key: paymentMethodKey2,
-                    widthPropotions: widthPropotions,
-                    imageUrl: "assets/images/momo.png",
-                    caption: "MTN MOMO",
-                  ),
-                  PayMethodCard(
-                    key: paymentMethodKey3,
-                    widthPropotions: widthPropotions,
-                    imageUrl: "assets/images/orange.png",
-                    caption: "ORANGE MOMO",
-                  ),
+                  for (PayMethodCardItem item in payMethodItems)
+                    PayMethodCard(
+                      key: item.key,
+                      widthPropotions: widthPropotions,
+                      imageUrl: item.imageUrl,
+                      caption: item.name,
+                    )
                 ],
               ),
             ),
@@ -117,7 +106,7 @@ class CheckoutDialogue extends ConsumerWidget {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (active != (paymentMethodKey1))
+                            if (active != (payMethodItems[0].key))
                               CheckoutCaptionText(
                                 caption: "Enter Your Phone Number",
                                 color: Colors.black,
@@ -125,7 +114,7 @@ class CheckoutDialogue extends ConsumerWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                if (active != (paymentMethodKey1))
+                                if (active != (payMethodItems[0].key))
                                   Container(
                                     width: widthPropotions * 2,
                                     height: 50,
@@ -147,7 +136,6 @@ class CheckoutDialogue extends ConsumerWidget {
                                 ButtonMain.active(
                                   text: "PROCEED",
                                   textSize: 18,
-                                  onPressed: null,
                                 ),
                               ],
                             ),
