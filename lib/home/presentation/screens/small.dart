@@ -4,8 +4,6 @@ import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:cbakes/home/presentation/widgets/items.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:marquee/marquee.dart';
 
 class SmallHomePage extends StatelessWidget {
   const SmallHomePage({Key? key}) : super(key: key);
@@ -14,182 +12,172 @@ class SmallHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.width;
     final widthFactor = size / 7;
-    final height = MediaQuery.of(context).size.height;
-    final heightFactor = (height / 8) - 30;
     final headerSize = size * 0.1;
 
     final List<FoodItem> foodItems = FoodItem.items;
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          child: Column(
-            children: [
-              Expanded(
-                flex: 1,
-                child: AppMarquee(),
-              ),
-              Expanded(
-                flex: 5,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: widthFactor * 6,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 50,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
+          children: [
+            const Expanded(
+              flex: 1,
+              child: AppMarquee(),
+            ),
+            Expanded(
+              flex: 5,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: widthFactor * 6,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const DroppingButtonSmall(
+                                    text: "BAKERY",
+                                  ),
+                                  SizedBox(
+                                    width: widthFactor / 2,
+                                  ),
+                                  const DroppingButtonSmall(
+                                    text: "RESTAURANT",
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: size / 14),
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisSize: MainAxisSize.max,
                               children: [
-                                Row(
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    DroppingButtonSmall(
-                                      text: "BAKERY",
+                                    Text(
+                                      "The best ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1!
+                                          .copyWith(fontSize: headerSize),
                                     ),
-                                    SizedBox(
-                                      width: widthFactor / 2,
+                                    Text(
+                                      "food service",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1!
+                                          .copyWith(fontSize: headerSize),
                                     ),
-                                    DroppingButtonSmall(
-                                      text: "RESTAURANT",
+                                    RichText(
+                                      text: TextSpan(
+                                        text: "for ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(fontSize: headerSize),
+                                        children: [
+                                          TextSpan(
+                                            text: "Everybody",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                  color: const Color.fromRGBO(
+                                                      246, 67, 67, 1),
+                                                  fontStyle: FontStyle.italic,
+                                                  fontSize: headerSize,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
+                                ),
+                                ButtonMain.activeLight(
+                                  text: "explore bakery",
+                                  textSize: 13,
                                 ),
                               ],
                             ),
                           ),
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: size / 14),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "The best ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1!
-                                            .copyWith(fontSize: headerSize),
-                                      ),
-                                      Text(
-                                        "food service",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1!
-                                            .copyWith(fontSize: headerSize),
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
-                                          text: "for ",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(fontSize: headerSize),
-                                          children: [
-                                            TextSpan(
-                                              text: "Everybody",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1!
-                                                  .copyWith(
-                                                    color: const Color.fromRGBO(
-                                                        246, 67, 67, 1),
-                                                    fontStyle: FontStyle.italic,
-                                                    fontSize: headerSize,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  ButtonMain(
-                                    text: "explore bakery",
-                                    textSize: 13,
-                                    backgroundColor:
-                                        Theme.of(context).buttonColor,
-                                    textColor: Theme.of(context).accentColor,
-                                  ),
-                                ],
-                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: widthFactor,
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondary,
+                            borderRadius: const BorderRadius.vertical(
+                              bottom: Radius.circular(30),
                             ),
                           ),
-                        ],
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional.center,
+                          child: HamBurger.small(20),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: SizedBox(
+                width: widthFactor * 6,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        bottom: 16.0,
+                        left: 8.0,
+                      ),
+                      child: Text(
+                        "Stock Overview",
+                        style: TextStyle(
+                          color: Color.fromRGBO(51, 70, 91, 1),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      width: widthFactor,
-                      child: Stack(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor,
-                              borderRadius: BorderRadius.vertical(
-                                bottom: Radius.circular(30),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional.center,
-                            child: HamBurger.small(20),
-                          ),
-                        ],
+                    Expanded(
+                      child: ListView.separated(
+                        itemCount: foodItems.length > 7 ? 7 : foodItems.length,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            SizedBox(
+                          width: (widthFactor / 3),
+                        ),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index) {
+                          return SmallItemSmall(
+                            foodItem: foodItems[index],
+                          );
+                        },
                       ),
                     ),
                   ],
                 ),
               ),
-              Expanded(
-                flex: 2,
-                child: SizedBox(
-                  width: widthFactor * 6,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 16.0,
-                          left: 8.0,
-                        ),
-                        child: Text(
-                          "Stock Overview",
-                          style: TextStyle(
-                            color: Color.fromRGBO(51, 70, 91, 1),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: ListView.separated(
-                          itemCount:
-                              foodItems.length > 7 ? 7 : foodItems.length,
-                          separatorBuilder: (BuildContext context, int index) =>
-                              SizedBox(
-                            width: (widthFactor / 3),
-                          ),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (BuildContext context, int index) {
-                            return SmallItemSmall(
-                              foodItem: foodItems[index],
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
@@ -220,7 +208,7 @@ class DroppingButtonSmall extends StatelessWidget {
         ),
         Expanded(
           child: Align(
-            alignment: Alignment(0, 5),
+            alignment: const Alignment(0, 5),
             child: ButtonSmall(text: text),
           ),
         ),
@@ -242,7 +230,7 @@ class ButtonSmall extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {},
       style: ButtonStyle(
-          padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
             horizontal: 15,
             vertical: 1.0,
           )),
@@ -254,7 +242,7 @@ class ButtonSmall extends StatelessWidget {
           )),
       child: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
         ),

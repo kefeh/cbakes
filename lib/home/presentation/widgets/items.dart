@@ -23,14 +23,14 @@ class SmallItem extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(100.0),
                         topRight: Radius.circular(100.0),
                         bottomLeft: Radius.circular(20.0),
                         bottomRight: Radius.circular(20.0),
                       ),
                       border: Border.all(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         width: 1,
                       ),
                     ),
@@ -44,7 +44,7 @@ class SmallItem extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 140,
                   child: Align(
                     alignment: AlignmentDirectional.bottomCenter,
@@ -53,7 +53,8 @@ class SmallItem extends StatelessWidget {
                           const BoxConstraints(minWidth: double.infinity),
                       child: ButtonMain(
                         text: foodItem.name,
-                        backgroundColor: Theme.of(context).accentColor,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ),
@@ -90,14 +91,14 @@ class SmallItemSmall extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(100.0),
                         topRight: Radius.circular(100.0),
                         bottomLeft: Radius.circular(15.0),
                         bottomRight: Radius.circular(15.0),
                       ),
                       border: Border.all(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         width: 1,
                       ),
                     ),
@@ -111,16 +112,17 @@ class SmallItemSmall extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: width / 5,
                   child: Align(
-                    alignment: Alignment(0, 1.2),
+                    alignment: const Alignment(0, 1.2),
                     child: ConstrainedBox(
                       constraints:
                           const BoxConstraints(minWidth: double.infinity),
                       child: ButtonMainSmall(
                         text: foodItem.name,
-                        backgroundColor: Theme.of(context).accentColor,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
                         textSize: 12,
                       ),
                     ),

@@ -6,7 +6,7 @@ class PaymentMethodActiveNotifier extends StateNotifier<GlobalKey?> {
       : super(state);
 
   void setActive(GlobalKey key) {
-    this.state = key;
+    state = key;
   }
 }
 
@@ -14,6 +14,6 @@ class DeliveryMethodActiveNotifier extends StateNotifier<String?> {
   DeliveryMethodActiveNotifier(String? state) : super(state);
 
   void setActive(String key) {
-    this.state = key;
+    state = key;
   }
 }

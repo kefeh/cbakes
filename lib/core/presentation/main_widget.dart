@@ -25,12 +25,10 @@ class MainWidget extends ConsumerWidget {
     final appRouter = AutoRouter();
     final textTheme = Theme.of(context).textTheme;
     ref.listen(initializationProvider, (_) {
-      print("something has just changed");
       appRouter.pushAndPopUntil(
         const HomeRoute(),
         predicate: (predicate) => true,
       );
-      print("router done");
     });
     return MaterialApp.router(
       routeInformationParser: appRouter.defaultRouteParser(),
@@ -59,8 +57,8 @@ class MainWidget extends ConsumerWidget {
           TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
         }),
         primaryColor: const Color.fromRGBO(51, 70, 91, 1),
-        accentColor: Color.fromRGBO(246, 67, 67, 1),
-        buttonColor: Color.fromRGBO(254, 236, 236, 1),
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(secondary: const Color.fromRGBO(246, 67, 67, 1)),
       ),
     );
   }

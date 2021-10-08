@@ -23,13 +23,13 @@ class CircularImage extends StatelessWidget {
           width: size,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: Theme.of(context).buttonColor,
+            color: const Color.fromRGBO(254, 236, 236, 1),
           ),
         ),
         Container(
           width: size - size / 10,
           height: size - size / 10,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.white,
             image: DecorationImage(
@@ -161,7 +161,7 @@ class CbIcons extends StatelessWidget {
         child: Icon(
           icon,
           size: size - 5,
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
         ),
       ),
     );
@@ -185,7 +185,7 @@ class PayMethodCard extends HookConsumerWidget {
     final active = ref.watch(activeProvider);
     final double scaleStart = active == key ? 1.0 : 0.8;
     final _controller = useAnimationController(
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
       initialValue: scaleStart,
       lowerBound: 0.8,
       upperBound: 1.0,
@@ -209,9 +209,9 @@ class PayMethodCard extends HookConsumerWidget {
               width: widthPropotions,
               height: widthPropotions * 0.7,
               decoration: BoxDecoration(
-                color: Color(0xFFF75555),
+                color: const Color(0xFFF75555),
                 border: Border.all(color: Colors.white30),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     offset: Offset(0, 3),
                     color: Colors.black38,

@@ -1,4 +1,4 @@
-import 'package:cbakes/checkout/presentation/checkoutDialogue.dart';
+import 'package:cbakes/checkout/presentation/checkout_dialogue.dart';
 import 'package:cbakes/checkout/presentation/widgets/helpers.dart';
 import 'package:cbakes/core/presentation/widgets/helper.dart';
 import 'package:cbakes/checkout/presentation/widgets/items.dart';
@@ -25,7 +25,7 @@ class CheckoutPage extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              Expanded(
+              const Expanded(
                 flex: 1,
                 child: AppMarquee(),
               ),
@@ -48,13 +48,14 @@ class CheckoutPage extends StatelessWidget {
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     width: 2.0,
                                   ),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(20),
                                     topRight: Radius.circular(20),
                                   ),
@@ -76,7 +77,7 @@ class CheckoutPage extends StatelessWidget {
                                 child: Wrap(
                                   spacing: mainPadding,
                                   runSpacing: mainPadding,
-                                  children: [
+                                  children: const [
                                     CheckoutItem(),
                                     CheckoutItem(),
                                     CheckoutItem(),
@@ -96,7 +97,7 @@ class CheckoutPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: smallScreen ? widthPropotions : sideBarWidth,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 80.0),
@@ -105,8 +106,9 @@ class CheckoutPage extends StatelessWidget {
                             Positioned.fill(
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).accentColor,
-                                  borderRadius: BorderRadius.vertical(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  borderRadius: const BorderRadius.vertical(
                                     bottom: Radius.circular(30),
                                   ),
                                 ),
@@ -116,11 +118,10 @@ class CheckoutPage extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Align(
+                                          const Align(
                                             alignment: Alignment.topLeft,
                                             child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(20.0),
+                                              padding: EdgeInsets.all(20.0),
                                               child: ItemHeading(
                                                 text: "Order menu",
                                                 color: Colors.white,
@@ -128,7 +129,7 @@ class CheckoutPage extends StatelessWidget {
                                               ),
                                             ),
                                           ),
-                                          Container(
+                                          SizedBox(
                                             height: sideBarWidth,
                                             child: SingleChildScrollView(
                                               child: Column(
@@ -163,8 +164,8 @@ class CheckoutPage extends StatelessWidget {
                                               ),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(16.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(16.0),
                                             child: ItemHeading(
                                               text: "Total: 4000frs",
                                               color: Colors.white,
@@ -199,8 +200,8 @@ class CheckoutPage extends StatelessWidget {
                                           const EdgeInsets.only(bottom: 40.0),
                                       child: ButtonMain(
                                         text: "checkout",
-                                        backgroundColor:
-                                            Theme.of(context).buttonColor,
+                                        backgroundColor: const Color.fromRGBO(
+                                            254, 236, 236, 1),
                                         textColor: const Color.fromRGBO(
                                             246, 67, 67, 1),
                                         onPressed: () {

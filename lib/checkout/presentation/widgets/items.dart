@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:cbakes/checkout/presentation/widgets/helpers.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ class CheckoutItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 230,
       height: 300,
       child: Stack(
@@ -27,7 +26,7 @@ class CheckoutItem extends StatelessWidget {
                 width: 250,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.white,
@@ -42,7 +41,7 @@ class CheckoutItem extends StatelessWidget {
                         height: 75,
                         child: Ratings(
                           size: 15,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                       SizedBox(
@@ -51,7 +50,7 @@ class CheckoutItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            ItemHeading(
+                            const ItemHeading(
                               text: "Fufu and Njama Njama",
                               color: Colors.black,
                             ),
@@ -70,7 +69,7 @@ class CheckoutItem extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                         child: ItemPriceText(
                           color: Colors.black45,
@@ -83,7 +82,7 @@ class CheckoutItem extends StatelessWidget {
               ),
             ),
           ),
-          Align(
+          const Align(
             alignment: Alignment.topRight,
             child: CircularImage(
               size: 150,
@@ -93,7 +92,7 @@ class CheckoutItem extends StatelessWidget {
             alignment: AlignmentDirectional.bottomEnd,
             child: ButtonMain(
               text: "add to cart",
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
             ),
           ),
         ],
@@ -138,7 +137,7 @@ class SideItem extends StatelessWidget {
                 style: BorderStyle.solid,
                 width: 2,
               ),
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(100),
                 bottomLeft: Radius.circular(100),
                 topRight: Radius.circular(20),
@@ -152,7 +151,7 @@ class SideItem extends StatelessWidget {
               child: Stack(
                 alignment: AlignmentDirectional.centerStart,
                 children: [
-                  Container(
+                  SizedBox(
                     width: width100 * 2,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -188,7 +187,7 @@ class SideItem extends StatelessWidget {
                   ),
                   mediumSize
                       ? Align(
-                          alignment: Alignment(-2, 2.5),
+                          alignment: const Alignment(-2, 2.5),
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
@@ -199,7 +198,7 @@ class SideItem extends StatelessWidget {
                                   icon: Icons.add,
                                   size: mediumSize ? 20 : 30,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 CbIcons(

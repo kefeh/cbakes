@@ -70,7 +70,7 @@ class ButtonMain extends ConsumerWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.6),
-            offset: Offset(1, 1),
+            offset: const Offset(1, 1),
             blurRadius: 2,
           )
         ],
@@ -162,11 +162,13 @@ class DroppingButton extends StatelessWidget {
     required this.height,
     required this.text,
     this.textSize,
+    this.onPressed,
   }) : super(key: key);
 
   final double height;
   final String text;
   final double? textSize;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -193,8 +195,9 @@ class DroppingButton extends StatelessWidget {
             ),
             ButtonMain(
               text: text,
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               textSize: textSize,
+              onPressed: onPressed,
             ),
           ],
         ),
@@ -236,7 +239,7 @@ class DroppingButtonSmall extends StatelessWidget {
             alignment: AlignmentDirectional.bottomCenter,
             child: ButtonMainSmall(
               text: text,
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               textSize: textSize,
             ),
           ),

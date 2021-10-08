@@ -36,12 +36,12 @@ class CheckoutDialogue extends ConsumerWidget {
         height: heightPropotions * 7,
         width: widthPropotions * 7,
         decoration: BoxDecoration(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: heightPropotions * 2.5,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -71,7 +71,7 @@ class CheckoutDialogue extends ConsumerWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CheckoutCaptionText(
+                          const CheckoutCaptionText(
                             caption: "Choose Method",
                             color: Colors.black,
                           ),
@@ -96,7 +96,7 @@ class CheckoutDialogue extends ConsumerWidget {
                           })
                         ],
                       ),
-                      CheckoutCaptionText(
+                      const CheckoutCaptionText(
                         caption: "4000frs",
                         color: Colors.black,
                         fontSize: 28,
@@ -107,7 +107,7 @@ class CheckoutDialogue extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (active != (payMethodItems[0].key))
-                              CheckoutCaptionText(
+                              const CheckoutCaptionText(
                                 caption: "Enter Your Phone Number",
                                 color: Colors.black,
                               ),
@@ -115,7 +115,7 @@ class CheckoutDialogue extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 if (active != (payMethodItems[0].key))
-                                  Container(
+                                  SizedBox(
                                     width: widthPropotions * 2,
                                     height: 50,
                                     child: TextFormField(
@@ -123,9 +123,9 @@ class CheckoutDialogue extends ConsumerWidget {
                                         contentPadding:
                                             const EdgeInsets.all(8.0),
                                         border: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: const Color.fromRGBO(
-                                                246, 67, 67, 1),
+                                          borderSide: const BorderSide(
+                                            color:
+                                                Color.fromRGBO(246, 67, 67, 1),
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(10.0),

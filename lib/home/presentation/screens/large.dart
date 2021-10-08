@@ -1,11 +1,10 @@
+import 'package:cbakes/core/presentation/routes/app_router.gr.dart';
 import 'package:cbakes/core/dormain/food_item.dart';
 import 'package:cbakes/core/presentation/widgets/helper.dart';
 import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:cbakes/home/presentation/widgets/items.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:marquee/marquee.dart';
 
 class LargeHomePage extends StatelessWidget {
   const LargeHomePage({Key? key}) : super(key: key);
@@ -19,11 +18,13 @@ class LargeHomePage extends StatelessWidget {
     final headerSize = size * 0.04;
 
     final List<FoodItem> foodItems = FoodItem.items;
+
+    final appRouter = AutoRouter();
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
+            const Expanded(
               flex: 1,
               child: AppMarquee(),
             ),
@@ -39,8 +40,8 @@ class LargeHomePage extends StatelessWidget {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor,
-                              borderRadius: BorderRadius.vertical(
+                              color: Theme.of(context).colorScheme.secondary,
+                              borderRadius: const BorderRadius.vertical(
                                 bottom: Radius.circular(30),
                               ),
                             ),
@@ -54,11 +55,11 @@ class LargeHomePage extends StatelessWidget {
                     ),
                   ),
                   Align(
-                    alignment: Alignment(0.01, 0),
+                    alignment: const Alignment(0.01, 0),
                     child: SizedBox(
                       width: widthFactor * 6,
                       child: Align(
-                        alignment: Alignment(1, 0),
+                        alignment: const Alignment(1, 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -76,6 +77,10 @@ class LargeHomePage extends StatelessWidget {
                                     DroppingButton(
                                       height: heightFactor,
                                       text: "BAKERY",
+                                      onPressed: () =>
+                                          appRouter.pushAndPopUntil(
+                                              const CheckoutRoute(),
+                                              predicate: (predicate) => true),
                                     ),
                                     SizedBox(
                                       width: widthFactor / 2,
@@ -154,8 +159,16 @@ class LargeHomePage extends StatelessWidget {
                                           ],
                                         ),
                                         ButtonMain.activeLight(
-                                          text: "explore bakery",
-                                        ),
+                                            text: "explore bakery",
+                                            onPressed: () {
+                                              // ignore: avoid_print
+                                              print("Ohh shit");
+
+                                              appRouter.pushAndPopUntil(
+                                                const CheckoutRoute(),
+                                                predicate: (predicate) => true,
+                                              );
+                                            }),
                                       ],
                                     ),
                                   ),
@@ -183,8 +196,8 @@ class LargeHomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
+                    const Padding(
+                      padding: EdgeInsets.only(
                         bottom: 16.0,
                         left: 8.0,
                       ),

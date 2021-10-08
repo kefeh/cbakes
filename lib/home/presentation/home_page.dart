@@ -14,15 +14,15 @@ class HomePage extends StatelessWidget {
             constraints.maxWidth > 640 && constraints.maxWidth <= 1007;
         final bool largeLayout = constraints.maxWidth >= 1008;
         if (largeLayout) {
-          return LargeHomePage();
+          return const LargeHomePage();
         }
         if (mediumLayout) {
-          return LargeHomePage();
+          return const LargeHomePage();
         }
         if (smallLayout) {
-          return SmallHomePage();
+          return const SmallHomePage();
         }
-        return LargeHomePage();
+        return const LargeHomePage();
       },
     );
   }
