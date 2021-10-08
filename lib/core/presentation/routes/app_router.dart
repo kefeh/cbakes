@@ -7,7 +7,7 @@ import 'package:cbakes/splash/presentation/splash_page.dart';
   routes: [
     MaterialRoute(page: SplashPage, initial: true),
     MaterialRoute(page: HomePage, path: '/home'),
-    MaterialRoute(page: CheckoutPage, path: '/checkout'),
+    // MaterialRoute(page: CheckoutPage, path: '/checkout'),
   ],
   replaceInRouteName: 'Page,Route',
 )
