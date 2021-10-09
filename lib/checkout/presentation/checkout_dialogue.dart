@@ -11,10 +11,12 @@ class CheckoutDialogue extends ConsumerWidget {
     Key? key,
     required this.heightPropotions,
     required this.widthPropotions,
+    required this.totalPrice,
   }) : super(key: key);
 
   final double heightPropotions;
   final double widthPropotions;
+  final double totalPrice;
 
   void initialiseActive(WidgetRef ref, GlobalKey key) {}
 
@@ -23,12 +25,6 @@ class CheckoutDialogue extends ConsumerWidget {
     final List<DeliveryOption> deliveryOptions = DeliveryOption.options;
     final List<PayMethodCardItem> payMethodItems =
         PayMethodCardItem.payCardItems;
-
-    ref.watch(activeProvider.notifier).setActive(payMethodItems[0].key);
-
-    ref
-        .watch(activeDeliveryBtnProvider.notifier)
-        .setActive(deliveryOptions[0].name);
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -96,8 +92,8 @@ class CheckoutDialogue extends ConsumerWidget {
                           })
                         ],
                       ),
-                      const CheckoutCaptionText(
-                        caption: "4000frs",
+                      CheckoutCaptionText(
+                        caption: "${totalPrice}frs",
                         color: Colors.black,
                         fontSize: 28,
                       ),

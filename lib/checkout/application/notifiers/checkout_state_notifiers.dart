@@ -1,3 +1,5 @@
+import 'package:cbakes/checkout/dormain/delivery_options.dart';
+import 'package:cbakes/checkout/dormain/pay_method_card.dart';
 import 'package:cbakes/core/dormain/food_item.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,8 +8,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'checkout_state_notifiers.freezed.dart';
 
 class PaymentMethodActiveNotifier extends StateNotifier<GlobalKey?> {
-  PaymentMethodActiveNotifier(GlobalKey<State<StatefulWidget>>? state)
-      : super(state);
+  PaymentMethodActiveNotifier() : super(PayMethodCardItem.payCardItems[0].key);
 
   void setActive(GlobalKey key) {
     state = key;
@@ -15,7 +16,7 @@ class PaymentMethodActiveNotifier extends StateNotifier<GlobalKey?> {
 }
 
 class DeliveryMethodActiveNotifier extends StateNotifier<String?> {
-  DeliveryMethodActiveNotifier(String? state) : super(state);
+  DeliveryMethodActiveNotifier() : super(DeliveryOption.options[0].name);
 
   void setActive(String key) {
     state = key;

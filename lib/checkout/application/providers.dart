@@ -4,11 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final activeProvider =
     StateNotifierProvider<PaymentMethodActiveNotifier, GlobalKey?>(
-        (ref) => PaymentMethodActiveNotifier(null));
+        (ref) => PaymentMethodActiveNotifier());
 
 final activeDeliveryBtnProvider =
     StateNotifierProvider<DeliveryMethodActiveNotifier, String?>(
-        (ref) => DeliveryMethodActiveNotifier(null));
+        (ref) => DeliveryMethodActiveNotifier());
 
 final sideFoodItemProvider =
     StateNotifierProvider<SideFoodItemsNotifier, SideFoodItems>(

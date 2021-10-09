@@ -238,6 +238,7 @@ class CheckoutLarge extends ConsumerWidget {
                                   builder: (_) => CheckoutDialogue(
                                     heightPropotions: heightPropotions,
                                     widthPropotions: widthPropotions,
+                                    totalPrice: sideFoodItem.totalPrice ?? 0,
                                   ),
                                 );
                               },
