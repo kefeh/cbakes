@@ -1,6 +1,9 @@
+import 'package:cbakes/checkout/application/notifiers/checkout_state_notifiers.dart';
+import 'package:cbakes/checkout/application/providers.dart';
 import 'package:cbakes/checkout/presentation/checkout_dialogue.dart';
 import 'package:cbakes/checkout/presentation/widgets/helpers.dart';
 import 'package:cbakes/core/application/providers.dart';
+import 'package:cbakes/core/dormain/food_item.dart';
 import 'package:cbakes/core/presentation/widgets/helper.dart';
 import 'package:cbakes/checkout/presentation/widgets/items.dart';
 import 'package:cbakes/core/presentation/widgets/marquee.dart';
@@ -64,6 +67,8 @@ class CheckoutLarge extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final foodItems = FoodItem.items;
+    final sideFoodItem = ref.watch(sideFoodItemProvider);
     return Expanded(
       flex: 9,
       child: Row(
@@ -111,18 +116,9 @@ class CheckoutLarge extends ConsumerWidget {
                       child: Wrap(
                         spacing: mainPadding,
                         runSpacing: mainPadding,
-                        children: const [
-                          CheckoutItem(),
-                          CheckoutItem(),
-                          CheckoutItem(),
-                          CheckoutItem(),
-                          CheckoutItem(),
-                          CheckoutItem(),
-                          CheckoutItem(),
-                          CheckoutItem(),
-                          CheckoutItem(),
-                          CheckoutItem(),
-                          CheckoutItem(),
+                        children: [
+                          for (FoodItem item in foodItems)
+                            CheckoutItem(item: item),
                         ],
                       ),
                     ),
@@ -166,38 +162,23 @@ class CheckoutLarge extends ConsumerWidget {
                                   child: SingleChildScrollView(
                                     child: Column(
                                       children: [
-                                        SideItem(
-                                          headingText: "Fufu and Njama Njama",
-                                          price: 1500,
-                                          quantity: 1,
-                                          widthFactor: sideBarWidth,
-                                        ),
-                                        SideItem(
-                                          headingText: "Rice and Tomatoe sauce",
-                                          price: 2000,
-                                          quantity: 2,
-                                          widthFactor: sideBarWidth,
-                                        ),
-                                        SideItem(
-                                          headingText: "Riz saute",
-                                          price: 100,
-                                          quantity: 1,
-                                          widthFactor: sideBarWidth,
-                                        ),
-                                        SideItem(
-                                          headingText: "Fufu and Eru",
-                                          price: 5000,
-                                          quantity: 3,
-                                          widthFactor: sideBarWidth,
-                                        ),
+                                        for (SideFoodItem item
+                                            in sideFoodItem.items)
+                                          SideItem(
+                                            item: item,
+                                            widthFactor: sideBarWidth,
+                                            index: sideFoodItem.items
+                                                .indexOf(item),
+                                          ),
                                       ],
                                     ),
                                   ),
                                 ),
-                                const Padding(
-                                  padding: EdgeInsets.all(16.0),
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
                                   child: ItemHeading(
-                                    text: "Total: 4000frs",
+                                    text:
+                                        "Total: ${sideFoodItem.totalPrice}frs",
                                     color: Colors.white,
                                     fontSize: 20,
                                   ),

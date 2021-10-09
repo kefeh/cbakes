@@ -9,3 +9,7 @@ final activeProvider =
 final activeDeliveryBtnProvider =
     StateNotifierProvider<DeliveryMethodActiveNotifier, String?>(
         (ref) => DeliveryMethodActiveNotifier(null));
+
+final sideFoodItemProvider =
+    StateNotifierProvider<SideFoodItemsNotifier, SideFoodItems>(
+        (ref) => SideFoodItemsNotifier());

@@ -9,9 +9,11 @@ class CircularImage extends StatelessWidget {
   const CircularImage({
     Key? key,
     required this.size,
+    required this.imageUrl,
   }) : super(key: key);
 
   final double size;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +31,12 @@ class CircularImage extends StatelessWidget {
         Container(
           width: size - size / 10,
           height: size - size / 10,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.white,
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage("assets/images/card.png"),
+              image: AssetImage(imageUrl),
             ),
           ),
         ),
@@ -143,25 +145,30 @@ class CbIcons extends StatelessWidget {
     Key? key,
     required this.icon,
     required this.size,
+    required this.onTap,
   }) : super(key: key);
 
   final IconData icon;
   final double size;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: size,
-      width: size,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Center(
-        child: Icon(
-          icon,
-          size: size - 5,
-          color: Theme.of(context).colorScheme.secondary,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: size,
+        width: size,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Center(
+          child: Icon(
+            icon,
+            size: size - 5,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
         ),
       ),
     );

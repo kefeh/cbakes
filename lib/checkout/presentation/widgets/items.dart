@@ -1,16 +1,23 @@
+import 'package:cbakes/checkout/application/notifiers/checkout_state_notifiers.dart';
+import 'package:cbakes/checkout/application/providers.dart';
 import 'package:cbakes/checkout/presentation/widgets/helpers.dart';
+import 'package:cbakes/core/dormain/food_item.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class CheckoutItem extends StatelessWidget {
+class CheckoutItem extends ConsumerWidget {
   const CheckoutItem({
     Key? key,
+    required this.item,
   }) : super(key: key);
 
+  final FoodItem item;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       width: 230,
       height: 300,
@@ -50,15 +57,17 @@ class CheckoutItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            const ItemHeading(
-                              text: "Fufu and Njama Njama",
+                            ItemHeading(
+                              text: item.name,
                               color: Colors.black,
                             ),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 8.0),
                               child: Text(
-                                "Every step taken is clearly and thoroughly explained, plus downloadable code for every section of this course.",
+                                item.decription,
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.rubik(
                                   color: Colors.black45,
                                   fontSize: 12,
@@ -69,11 +78,11 @@ class CheckoutItem extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 20,
                         child: ItemPriceText(
                           color: Colors.black45,
-                          text: "1500frs",
+                          text: "${item.price}frs",
                         ),
                       ),
                     ],
@@ -82,10 +91,11 @@ class CheckoutItem extends StatelessWidget {
               ),
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.topRight,
             child: CircularImage(
               size: 150,
+              imageUrl: item.imageUrl,
             ),
           ),
           Align(
@@ -93,6 +103,9 @@ class CheckoutItem extends StatelessWidget {
             child: ButtonMain(
               text: "add to cart",
               backgroundColor: Theme.of(context).colorScheme.secondary,
+              onPressed: () {
+                ref.read(sideFoodItemProvider.notifier).addSideItem(item);
+              },
             ),
           ),
         ],
@@ -101,26 +114,25 @@ class CheckoutItem extends StatelessWidget {
   }
 }
 
-class SideItem extends StatelessWidget {
+class SideItem extends ConsumerWidget {
   const SideItem({
     Key? key,
-    required this.headingText,
-    required this.price,
-    required this.quantity,
+    required this.item,
     required this.widthFactor,
+    required this.index,
   }) : super(key: key);
 
-  final String headingText;
-  final double price;
-  final int quantity;
+  final SideFoodItem item;
   final double widthFactor;
+  final int index;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final widthSize = MediaQuery.of(context).size.width;
     final mediumSize = widthSize < 1200;
 
     final double width100 = widthFactor / 4;
+    final sideNotifier = ref.read(sideFoodItemProvider.notifier);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 25.0,
@@ -158,7 +170,7 @@ class SideItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ItemHeading(
-                          text: headingText,
+                          text: item.name,
                           color: Colors.white,
                           fontSize: mediumSize ? 12 : 14,
                         ),
@@ -168,12 +180,12 @@ class SideItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               ItemPriceText(
-                                text: "${price.toString()}frs",
+                                text: "${item.price}frs",
                                 color: Colors.white60,
                                 fontSize: mediumSize ? 12 : 14,
                               ),
                               Text(
-                                "${quantity}x",
+                                "${item.quantity}x",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: mediumSize ? 14 : 16,
@@ -195,16 +207,20 @@ class SideItem extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 CbIcons(
-                                  icon: Icons.add,
-                                  size: mediumSize ? 20 : 30,
-                                ),
+                                    icon: Icons.add,
+                                    size: mediumSize ? 20 : 30,
+                                    onTap: () {
+                                      sideNotifier.addSideItem(item, index);
+                                    }),
                                 const SizedBox(
                                   width: 5,
                                 ),
                                 CbIcons(
-                                  icon: MdiIcons.minus,
-                                  size: mediumSize ? 20 : 30,
-                                ),
+                                    icon: MdiIcons.minus,
+                                    size: mediumSize ? 20 : 30,
+                                    onTap: () {
+                                      sideNotifier.removeSideItem(index);
+                                    }),
                               ],
                             ),
                           ),
@@ -218,13 +234,17 @@ class SideItem extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 CbIcons(
-                                  icon: Icons.add,
-                                  size: mediumSize ? 25 : 30,
-                                ),
+                                    icon: Icons.add,
+                                    size: mediumSize ? 25 : 30,
+                                    onTap: () {
+                                      sideNotifier.addSideItem(item, index);
+                                    }),
                                 CbIcons(
-                                  icon: MdiIcons.minus,
-                                  size: mediumSize ? 25 : 30,
-                                ),
+                                    icon: MdiIcons.minus,
+                                    size: mediumSize ? 25 : 30,
+                                    onTap: () {
+                                      sideNotifier.removeSideItem(index);
+                                    }),
                               ],
                             ),
                           ),
@@ -235,6 +255,7 @@ class SideItem extends StatelessWidget {
           ),
           CircularImage(
             size: width100,
+            imageUrl: item.imageUrl,
           ),
         ],
       ),
