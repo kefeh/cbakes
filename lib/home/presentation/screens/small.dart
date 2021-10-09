@@ -198,19 +198,9 @@ class HomeSmall extends ConsumerWidget {
                         alignment: AlignmentDirectional.center,
                         child: HamBurger.small(20),
                       ),
-                      Align(
+                      const Align(
                         alignment: Alignment.bottomCenter,
-                        child: ElevatedButton(
-                          onPressed: null,
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.transparent),
-                          ),
-                          child: const Icon(
-                            MdiIcons.cart,
-                            color: Colors.white,
-                          ),
-                        ),
+                        child: CartButton(),
                       ),
                     ],
                   ),

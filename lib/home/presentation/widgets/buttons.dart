@@ -1,6 +1,7 @@
 import 'package:cbakes/checkout/application/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class ButtonMain extends ConsumerWidget {
   const ButtonMain({
@@ -244,6 +245,31 @@ class DroppingButtonSmall extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CartButton extends StatelessWidget {
+  const CartButton({
+    Key? key,
+    this.onPressed,
+    this.color = Colors.white,
+  }) : super(key: key);
+
+  final void Function()? onPressed;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+      child: Icon(
+        MdiIcons.cart,
+        color: color,
       ),
     );
   }

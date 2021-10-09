@@ -128,7 +128,7 @@ class CheckoutLarge extends ConsumerWidget {
             ),
           ),
           SizedBox(
-            width: smallScreen ? widthPropotions : sideBarWidth,
+            width: smallScreen ? (widthPropotions * 10) / 7 : sideBarWidth,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 80.0),
               child: Stack(
@@ -222,7 +222,10 @@ class CheckoutLarge extends ConsumerWidget {
                       ),
                     ),
                   smallScreen
-                      ? Container()
+                      ? const Align(
+                          alignment: Alignment.bottomCenter,
+                          child: CartButton(),
+                        )
                       : Align(
                           alignment: AlignmentDirectional.bottomCenter,
                           child: Padding(
