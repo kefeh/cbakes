@@ -250,7 +250,7 @@ class DroppingButtonSmall extends StatelessWidget {
   }
 }
 
-class CartButton extends StatelessWidget {
+class CartButton extends ConsumerWidget {
   const CartButton({
     Key? key,
     this.onPressed,
@@ -261,15 +261,36 @@ class CartButton extends StatelessWidget {
   final Color color;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final value = ref.watch(sideFoodItemProvider);
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.transparent),
       ),
-      child: Icon(
-        MdiIcons.cart,
-        color: color,
+      child: SizedBox(
+        height: 50,
+        width: 50,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Icon(
+              MdiIcons.cart,
+              color: color,
+            ),
+            if (value.items.isNotEmpty)
+              Align(
+                alignment: Alignment.topRight,
+                child: Text(
+                  value.items.length.toString(),
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

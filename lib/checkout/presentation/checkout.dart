@@ -11,6 +11,7 @@ import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 // class CheckoutPage extends StatelessWidget {
 //   const CheckoutPage({Key? key}) : super(key: key);
@@ -129,127 +130,146 @@ class CheckoutLarge extends ConsumerWidget {
           ),
           SizedBox(
             width: smallScreen ? (widthPropotions * 10) / 7 : sideBarWidth,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 80.0),
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary,
-                        borderRadius: const BorderRadius.vertical(
-                          bottom: Radius.circular(30),
-                        ),
-                      ),
-                      child: smallScreen
-                          ? Container()
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Padding(
-                                    padding: EdgeInsets.all(20.0),
-                                    child: ItemHeading(
-                                      text: "Order menu",
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: sideBarWidth,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        for (SideFoodItem item
-                                            in sideFoodItem.items)
-                                          SideItem(
-                                            item: item,
-                                            widthFactor: sideBarWidth,
-                                            index: sideFoodItem.items
-                                                .indexOf(item),
-                                          ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: ItemHeading(
-                                    text:
-                                        "Total: ${sideFoodItem.totalPrice}frs",
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ],
-                            ),
-                    ),
-                  ),
-                  if (smallScreen)
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: HamBurger.small(0),
-                      ),
-                    )
-                  else
-                    Positioned(
-                      top: 20,
-                      left: widthPropotions / 4,
-                      right: widthPropotions / 4,
-                      child: SizedBox(
-                        width: sideBarWidth - (widthPropotions / 2),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            GestureDetector(
-                              onTap: () => ref
-                                  .read(servedPageProvider.notifier)
-                                  .setHome(),
-                              child: const Icon(
-                                Icons.home,
-                                color: Colors.white,
-                                size: 40,
+            child: Column(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 80.0),
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.secondary,
+                              borderRadius: const BorderRadius.vertical(
+                                bottom: Radius.circular(30),
                               ),
                             ),
-                            HamBurger.large(40),
-                          ],
-                        ),
-                      ),
-                    ),
-                  smallScreen
-                      ? const Align(
-                          alignment: Alignment.bottomCenter,
-                          child: CartButton(),
-                        )
-                      : Align(
-                          alignment: AlignmentDirectional.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 40.0),
-                            child: ButtonMain(
-                              text: "checkout",
-                              backgroundColor:
-                                  const Color.fromRGBO(254, 236, 236, 1),
-                              textColor: const Color.fromRGBO(246, 67, 67, 1),
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (_) => CheckoutDialogue(
-                                    heightPropotions: heightPropotions,
-                                    widthPropotions: widthPropotions,
-                                    totalPrice: sideFoodItem.totalPrice ?? 0,
+                            child: smallScreen
+                                ? Container()
+                                : Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Align(
+                                        alignment: Alignment.topLeft,
+                                        child: Padding(
+                                          padding: EdgeInsets.all(20.0),
+                                          child: ItemHeading(
+                                            text: "Order menu",
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: sideBarWidth,
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            children: [
+                                              for (SideFoodItem item
+                                                  in sideFoodItem.items)
+                                                SideItem(
+                                                  item: item,
+                                                  widthFactor: sideBarWidth,
+                                                  index: sideFoodItem.items
+                                                      .indexOf(item),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: ItemHeading(
+                                          text:
+                                              "Total: ${sideFoodItem.totalPrice}frs",
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                );
-                              },
-                            ),
                           ),
                         ),
-                ],
-              ),
+                        if (smallScreen)
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: HamBurger.small(0),
+                            ),
+                          )
+                        else
+                          Positioned(
+                            top: 20,
+                            left: widthPropotions / 4,
+                            right: widthPropotions / 4,
+                            child: SizedBox(
+                              width: sideBarWidth - (widthPropotions / 2),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () => ref
+                                        .read(servedPageProvider.notifier)
+                                        .setHome(),
+                                    child: const Icon(
+                                      Icons.home,
+                                      color: Colors.white,
+                                      size: 40,
+                                    ),
+                                  ),
+                                  HamBurger.large(40),
+                                ],
+                              ),
+                            ),
+                          ),
+                        smallScreen
+                            ? const Align(
+                                alignment: Alignment.bottomCenter,
+                                child: CartButton(),
+                              )
+                            : Align(
+                                alignment: AlignmentDirectional.bottomCenter,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 40.0),
+                                  child: ButtonMain(
+                                    text: "checkout",
+                                    backgroundColor:
+                                        const Color.fromRGBO(254, 236, 236, 1),
+                                    textColor:
+                                        const Color.fromRGBO(246, 67, 67, 1),
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (_) => CheckoutDialogue(
+                                          heightPropotions: heightPropotions,
+                                          widthPropotions: widthPropotions,
+                                          totalPrice:
+                                              sideFoodItem.totalPrice ?? 0,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                      ],
+                    ),
+                  ),
+                ),
+                if (smallScreen)
+                  FloatingActionButton(
+                    onPressed: () =>
+                        ref.read(servedPageProvider.notifier).setHome(),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    child: const Icon(
+                      MdiIcons.home,
+                      color: Colors.white,
+                    ),
+                  )
+              ],
             ),
           ),
         ],
