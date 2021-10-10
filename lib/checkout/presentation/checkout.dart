@@ -70,66 +70,75 @@ class CheckoutLarge extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final foodItems = FoodItem.items;
     final sideFoodItem = ref.watch(sideFoodItemProvider);
+    final isCheckoutActive = ref.watch(activeCheckoutProvider);
     return Expanded(
       flex: 9,
-      child: Row(
+      child: Stack(
+        fit: StackFit.expand,
         children: [
-          Expanded(
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: mainPadding,
-                      left: mainPadding,
-                      right: mainPadding,
-                    ),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.secondary,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
+          Positioned.fill(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  right: smallScreen ? widthPropotions * 1.5 : sideBarWidth),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: mainPadding,
+                        left: mainPadding,
+                        right: mainPadding,
                       ),
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.secondary,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Image.asset(
-                          "assets/images/bread.png",
-                          fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                          ),
+                          child: Image.asset(
+                            "assets/images/bread.png",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: mainPadding,
+                      ),
+                      child: SingleChildScrollView(
+                        child: Wrap(
+                          spacing: mainPadding,
+                          runSpacing: mainPadding,
+                          children: [
+                            for (FoodItem item in foodItems)
+                              CheckoutItem(item: item),
+                          ],
                         ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: mainPadding,
-                    ),
-                    child: SingleChildScrollView(
-                      child: Wrap(
-                        spacing: mainPadding,
-                        runSpacing: mainPadding,
-                        children: [
-                          for (FoodItem item in foodItems)
-                            CheckoutItem(item: item),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-          SizedBox(
-            width: smallScreen ? (widthPropotions * 10) / 7 : sideBarWidth,
+          Positioned.fill(
+            top: 0,
+            right: 0,
+            left: widthPropotions * (smallScreen ? 8.2 : 7.5) -
+                ((smallScreen && isCheckoutActive) ? (widthPropotions * 7) : 0),
             child: Column(
               children: [
                 Expanded(
@@ -145,57 +154,69 @@ class CheckoutLarge extends ConsumerWidget {
                                 bottom: Radius.circular(30),
                               ),
                             ),
-                            child: smallScreen
-                                ? Container()
-                                : Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Padding(
-                                          padding: EdgeInsets.all(20.0),
+                            child: (isCheckoutActive || !smallScreen)
+                                ? Padding(
+                                    padding: const EdgeInsets.only(top: 80.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        const Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(20.0),
+                                            child: ItemHeading(
+                                              text: "Order menu",
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: isCheckoutActive
+                                              ? heightPropotions * 3.5
+                                              : sideBarWidth,
+                                          child: SingleChildScrollView(
+                                            child: Column(
+                                              children: [
+                                                for (SideFoodItem item
+                                                    in sideFoodItem.items)
+                                                  SideItem(
+                                                    item: item,
+                                                    widthFactor: sideBarWidth,
+                                                    index: sideFoodItem.items
+                                                        .indexOf(item),
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: isCheckoutActive
+                                              ? const EdgeInsets.all(8)
+                                              : const EdgeInsets.all(16.0),
                                           child: ItemHeading(
-                                            text: "Order menu",
+                                            text:
+                                                "Total: ${sideFoodItem.totalPrice}frs",
                                             color: Colors.white,
-                                            fontSize: 18,
+                                            fontSize: 20,
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: sideBarWidth,
-                                        child: SingleChildScrollView(
-                                          child: Column(
-                                            children: [
-                                              for (SideFoodItem item
-                                                  in sideFoodItem.items)
-                                                SideItem(
-                                                  item: item,
-                                                  widthFactor: sideBarWidth,
-                                                  index: sideFoodItem.items
-                                                      .indexOf(item),
-                                                ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(16.0),
-                                        child: ItemHeading(
-                                          text:
-                                              "Total: ${sideFoodItem.totalPrice}frs",
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                      ],
+                                    ),
+                                  )
+                                : Container(),
                           ),
                         ),
                         if (smallScreen)
                           Align(
-                            alignment: Alignment.center,
+                            alignment: Alignment.centerRight,
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 20.0),
+                              padding: const EdgeInsets.only(
+                                top: 20.0,
+                                left: 25,
+                                right: 25,
+                              ),
                               child: HamBurger.small(0),
                             ),
                           )
@@ -226,47 +247,61 @@ class CheckoutLarge extends ConsumerWidget {
                               ),
                             ),
                           ),
-                        smallScreen
-                            ? const Align(
-                                alignment: Alignment.bottomCenter,
-                                child: CartButton(),
-                              )
-                            : Align(
-                                alignment: AlignmentDirectional.bottomCenter,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 40.0),
-                                  child: ButtonMain(
-                                    text: "checkout",
-                                    backgroundColor:
-                                        const Color.fromRGBO(254, 236, 236, 1),
-                                    textColor:
-                                        const Color.fromRGBO(246, 67, 67, 1),
-                                    onPressed: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (_) => CheckoutDialogue(
-                                          heightPropotions: heightPropotions,
-                                          widthPropotions: widthPropotions,
-                                          totalPrice:
-                                              sideFoodItem.totalPrice ?? 0,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
+                        if (smallScreen)
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: CartButton(
+                              closeIcon:
+                                  isCheckoutActive ? MdiIcons.close : null,
+                              onPressed: () {
+                                ref
+                                    .read(activeCheckoutProvider.notifier)
+                                    .changeState();
+                              },
+                            ),
+                          ),
+                        if (isCheckoutActive || !smallScreen)
+                          Align(
+                            alignment: AlignmentDirectional.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 40.0),
+                              child: ButtonMain(
+                                text: "checkout",
+                                backgroundColor:
+                                    const Color.fromRGBO(254, 236, 236, 1),
+                                textColor: const Color.fromRGBO(246, 67, 67, 1),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) => CheckoutDialogue(
+                                      heightPropotions: heightPropotions,
+                                      widthPropotions: widthPropotions,
+                                      totalPrice: sideFoodItem.totalPrice ?? 0,
+                                    ),
+                                  );
+                                },
                               ),
+                            ),
+                          ),
                       ],
                     ),
                   ),
                 ),
                 if (smallScreen)
-                  FloatingActionButton(
-                    onPressed: () =>
-                        ref.read(servedPageProvider.notifier).setHome(),
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    child: const Icon(
-                      MdiIcons.home,
-                      color: Colors.white,
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FloatingActionButton(
+                        onPressed: () =>
+                            ref.read(servedPageProvider.notifier).setHome(),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
+                        child: const Icon(
+                          MdiIcons.home,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   )
               ],

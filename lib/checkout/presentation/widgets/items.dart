@@ -131,7 +131,7 @@ class SideItem extends ConsumerWidget {
     final widthSize = MediaQuery.of(context).size.width;
     final mediumSize = widthSize < 1200;
 
-    final double width100 = widthFactor / 4;
+    final double width100 = (widthFactor / 4) < 100 ? 100 : widthFactor / 4;
     final sideNotifier = ref.read(sideFoodItemProvider.notifier);
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -164,7 +164,7 @@ class SideItem extends ConsumerWidget {
                 alignment: AlignmentDirectional.centerStart,
                 children: [
                   SizedBox(
-                    width: width100 * 2,
+                    width: double.infinity,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,32 +174,35 @@ class SideItem extends ConsumerWidget {
                           color: Colors.white,
                           fontSize: mediumSize ? 12 : 14,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 15.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ItemPriceText(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: ItemPriceText(
                                 text: "${item.price}frs",
                                 color: Colors.white60,
-                                fontSize: mediumSize ? 12 : 14,
+                                fontSize: mediumSize ? 11 : 14,
                               ),
-                              Text(
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(right: mediumSize ? 8 : 50.0),
+                              child: Text(
                                 "${item.quantity}x",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: mediumSize ? 14 : 16,
                                     fontWeight: FontWeight.bold),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         )
                       ],
                     ),
                   ),
                   mediumSize
                       ? Align(
-                          alignment: const Alignment(-2, 2.5),
+                          alignment: Alignment(-2, width100 == 100 ? 1.2 : 2.5),
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),

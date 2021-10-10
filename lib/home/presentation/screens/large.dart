@@ -24,7 +24,7 @@ class LargeHomePage extends ConsumerWidget {
     final double heightPropotions = height / 10;
     final double sideBarWidth = widthPropotions * 2.5;
     final double mainPadding = size / 40;
-    final bool smallScreen = size < 860;
+    final bool smallScreen = size < 920;
 
     final List<FoodItem> foodItems = FoodItem.items;
 

@@ -251,14 +251,13 @@ class DroppingButtonSmall extends StatelessWidget {
 }
 
 class CartButton extends ConsumerWidget {
-  const CartButton({
-    Key? key,
-    this.onPressed,
-    this.color = Colors.white,
-  }) : super(key: key);
+  const CartButton(
+      {Key? key, this.onPressed, this.color = Colors.white, this.closeIcon})
+      : super(key: key);
 
   final void Function()? onPressed;
   final Color color;
+  final IconData? closeIcon;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -267,6 +266,7 @@ class CartButton extends ConsumerWidget {
       onPressed: onPressed,
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.transparent),
+        elevation: MaterialStateProperty.all(0),
       ),
       child: SizedBox(
         height: 50,
@@ -275,20 +275,21 @@ class CartButton extends ConsumerWidget {
           alignment: Alignment.center,
           children: [
             Icon(
-              MdiIcons.cart,
+              closeIcon ?? MdiIcons.cart,
               color: color,
             ),
-            if (value.items.isNotEmpty)
-              Align(
-                alignment: Alignment.topRight,
-                child: Text(
-                  value.items.length.toString(),
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold),
+            if (closeIcon == null)
+              if (value.items.isNotEmpty)
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Text(
+                    value.items.length.toString(),
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
           ],
         ),
       ),

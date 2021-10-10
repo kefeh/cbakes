@@ -26,3 +26,11 @@ class ServedPageNotifier extends StateNotifier<ServedPage> {
     state = const ServedPage.home();
   }
 }
+
+class ActiveCheckoutNotifier extends StateNotifier<bool> {
+  ActiveCheckoutNotifier() : super(false);
+
+  void changeState() {
+    state = !state;
+  }
+}

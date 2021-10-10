@@ -7,7 +7,6 @@ import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:cbakes/home/presentation/widgets/items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SmallHomePage extends ConsumerWidget {
   const SmallHomePage({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class SmallHomePage extends ConsumerWidget {
     final double heightPropotions = height / 10;
     final double sideBarWidth = widthPropotions * 2.5;
     final double mainPadding = size / 40;
-    final bool smallScreen = size < 860;
+    final bool smallScreen = size < 920;
 
     final List<FoodItem> foodItems = FoodItem.items;
     final servedNotifier = ref.watch(servedPageProvider);

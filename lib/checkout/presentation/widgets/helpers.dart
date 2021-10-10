@@ -131,6 +131,7 @@ class ItemPriceText extends StatelessWidget {
     return Text(
       text,
       textAlign: TextAlign.left,
+      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.rubik(
           color: color,
           fontSize: fontSize ?? 14,
