@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+const accentColorLight = Color.fromRGBO(254, 236, 236, 1);
+const accentColor = Color.fromRGBO(246, 67, 67, 1);
+
 class ButtonMain extends ConsumerWidget {
   const ButtonMain({
     Key? key,
@@ -18,9 +21,6 @@ class ButtonMain extends ConsumerWidget {
   final Color? textColor;
   final double? textSize;
   final void Function()? onPressed;
-
-  static const accentColorLight = Color.fromRGBO(254, 236, 236, 1);
-  static const accentColor = Color.fromRGBO(246, 67, 67, 1);
 
   factory ButtonMain.active({
     required String text,
@@ -119,6 +119,7 @@ class ButtonMainSmall extends StatelessWidget {
     required this.text,
     required this.backgroundColor,
     required this.textSize,
+    this.onPressed,
     this.textColor,
   }) : super(key: key);
 
@@ -126,11 +127,54 @@ class ButtonMainSmall extends StatelessWidget {
   final Color backgroundColor;
   final Color? textColor;
   final double textSize;
+  final void Function()? onPressed;
+
+  factory ButtonMainSmall.active({
+    required String text,
+    required double textSize,
+    void Function()? onPressed,
+  }) {
+    return ButtonMainSmall(
+      text: text,
+      backgroundColor: accentColor,
+      textColor: Colors.white,
+      textSize: textSize,
+      onPressed: onPressed,
+    );
+  }
+
+  factory ButtonMainSmall.activeLight({
+    required String text,
+    required double textSize,
+    void Function()? onPressed,
+  }) {
+    return ButtonMainSmall(
+      text: text,
+      backgroundColor: accentColorLight,
+      textColor: accentColor,
+      textSize: textSize,
+      onPressed: onPressed,
+    );
+  }
+
+  factory ButtonMainSmall.inActive({
+    required String text,
+    required double textSize,
+    void Function()? onPressed,
+  }) {
+    return ButtonMainSmall(
+      text: text,
+      backgroundColor: Colors.white,
+      textColor: Colors.black,
+      textSize: textSize,
+      onPressed: onPressed,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: Text(
         text,
         overflow: TextOverflow.ellipsis,

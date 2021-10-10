@@ -191,7 +191,7 @@ class PayMethodCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final active = ref.watch(activeProvider);
-    final double scaleStart = active == key ? 1.0 : 0.8;
+    final double scaleStart = active == caption ? 1.0 : 0.8;
     final _controller = useAnimationController(
       duration: const Duration(milliseconds: 200),
       initialValue: scaleStart,
@@ -206,7 +206,7 @@ class PayMethodCard extends HookConsumerWidget {
     return GestureDetector(
       onTap: () {
         final anotherNotifier = ref.read(activeProvider.notifier);
-        anotherNotifier.setActive(key as GlobalKey);
+        anotherNotifier.setActive(caption);
       },
       child: ScaleTransition(
         scale: _animation,
@@ -216,6 +216,10 @@ class PayMethodCard extends HookConsumerWidget {
             Container(
               width: widthPropotions,
               height: widthPropotions * 0.7,
+              constraints: const BoxConstraints(
+                minHeight: 100,
+                minWidth: 100,
+              ),
               decoration: BoxDecoration(
                 color: const Color(0xFFF75555),
                 border: Border.all(color: Colors.white30),

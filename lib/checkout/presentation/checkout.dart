@@ -6,7 +6,6 @@ import 'package:cbakes/core/application/providers.dart';
 import 'package:cbakes/core/dormain/food_item.dart';
 import 'package:cbakes/core/presentation/widgets/helper.dart';
 import 'package:cbakes/checkout/presentation/widgets/items.dart';
-import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';

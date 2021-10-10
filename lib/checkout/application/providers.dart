@@ -1,9 +1,8 @@
 import 'package:cbakes/checkout/application/notifiers/checkout_state_notifiers.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final activeProvider =
-    StateNotifierProvider<PaymentMethodActiveNotifier, GlobalKey?>(
+    StateNotifierProvider<PaymentMethodActiveNotifier, String?>(
         (ref) => PaymentMethodActiveNotifier());
 
 final activeDeliveryBtnProvider =

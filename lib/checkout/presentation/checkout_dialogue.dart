@@ -26,6 +26,9 @@ class CheckoutDialogue extends ConsumerWidget {
     final List<PayMethodCardItem> payMethodItems =
         PayMethodCardItem.payCardItems;
 
+    final width = MediaQuery.of(context).size.width;
+    final bool smallScreen = width <= 920;
+
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -39,17 +42,19 @@ class CheckoutDialogue extends ConsumerWidget {
           children: [
             SizedBox(
               height: heightPropotions * 2.5,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  for (PayMethodCardItem item in payMethodItems)
-                    PayMethodCard(
-                      key: item.key,
-                      widthPropotions: widthPropotions,
-                      imageUrl: item.imageUrl,
-                      caption: item.name,
-                    )
-                ],
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    for (PayMethodCardItem item in payMethodItems)
+                      PayMethodCard(
+                        widthPropotions: widthPropotions,
+                        imageUrl: item.imageUrl,
+                        caption: item.name,
+                      )
+                  ],
+                ),
               ),
             ),
             Expanded(
@@ -74,20 +79,60 @@ class CheckoutDialogue extends ConsumerWidget {
                           Consumer(builder: (_, ref, __) {
                             final deliverActiveId =
                                 ref.watch(activeDeliveryBtnProvider);
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                for (DeliveryOption option in deliveryOptions)
-                                  deliverActiveId == option.name
-                                      ? ButtonMain.active(
-                                          text: option.name,
-                                          onPressed: () {},
-                                        )
-                                      : ButtonMain.inActive(
-                                          text: option.name,
-                                          onPressed: () {},
-                                        ),
-                              ],
+                            return SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  for (DeliveryOption option in deliveryOptions)
+                                    deliverActiveId == option.name
+                                        ? smallScreen
+                                            ? ButtonMainSmall.active(
+                                                text: option.name,
+                                                onPressed: () {
+                                                  ref
+                                                      .read(
+                                                          activeDeliveryBtnProvider
+                                                              .notifier)
+                                                      .setActive(option.name);
+                                                },
+                                                textSize: 12,
+                                              )
+                                            : ButtonMain.active(
+                                                text: option.name,
+                                                onPressed: () {
+                                                  ref
+                                                      .read(
+                                                          activeDeliveryBtnProvider
+                                                              .notifier)
+                                                      .setActive(option.name);
+                                                },
+                                              )
+                                        : smallScreen
+                                            ? ButtonMainSmall.inActive(
+                                                text: option.name,
+                                                onPressed: () {
+                                                  ref
+                                                      .read(
+                                                          activeDeliveryBtnProvider
+                                                              .notifier)
+                                                      .setActive(option.name);
+                                                },
+                                                textSize: 12,
+                                              )
+                                            : ButtonMain.inActive(
+                                                text: option.name,
+                                                onPressed: () {
+                                                  ref
+                                                      .read(
+                                                          activeDeliveryBtnProvider
+                                                              .notifier)
+                                                      .setActive(option.name);
+                                                },
+                                              ),
+                                ],
+                              ),
                             );
                           })
                         ],
@@ -102,39 +147,73 @@ class CheckoutDialogue extends ConsumerWidget {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (active != (payMethodItems[0].key))
+                            if (active != (payMethodItems[0].name))
                               const CheckoutCaptionText(
                                 caption: "Enter Your Phone Number",
                                 color: Colors.black,
                               ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                if (active != (payMethodItems[0].key))
-                                  SizedBox(
-                                    width: widthPropotions * 2,
-                                    height: 50,
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                        contentPadding:
-                                            const EdgeInsets.all(8.0),
-                                        border: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                            color:
-                                                Color.fromRGBO(246, 67, 67, 1),
+                            smallScreen
+                                ? Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      if (active != (payMethodItems[0].name))
+                                        SizedBox(
+                                          width: double.infinity,
+                                          height: 50,
+                                          child: TextFormField(
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  const EdgeInsets.all(8.0),
+                                              border: OutlineInputBorder(
+                                                borderSide: const BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      246, 67, 67, 1),
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                            ),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
                                         ),
+                                      const SizedBox(
+                                        height: 20,
                                       ),
-                                    ),
+                                      ButtonMain.active(
+                                        text: "PROCEED",
+                                        textSize: 18,
+                                      ),
+                                    ],
+                                  )
+                                : Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      if (active != (payMethodItems[0].name))
+                                        SizedBox(
+                                          width: widthPropotions * 2,
+                                          height: 50,
+                                          child: TextFormField(
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  const EdgeInsets.all(8.0),
+                                              border: OutlineInputBorder(
+                                                borderSide: const BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      246, 67, 67, 1),
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ButtonMain.active(
+                                        text: "PROCEED",
+                                        textSize: 18,
+                                      ),
+                                    ],
                                   ),
-                                ButtonMain.active(
-                                  text: "PROCEED",
-                                  textSize: 18,
-                                ),
-                              ],
-                            ),
                           ],
                         );
                       })

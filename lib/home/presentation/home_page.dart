@@ -9,9 +9,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        final bool smallLayout = constraints.maxWidth <= 640;
+        final bool smallLayout = constraints.maxWidth <= 920;
         final bool mediumLayout =
-            constraints.maxWidth > 640 && constraints.maxWidth <= 1007;
+            constraints.maxWidth > 920 && constraints.maxWidth <= 1007;
         final bool largeLayout = constraints.maxWidth >= 1008;
         if (largeLayout) {
           return const LargeHomePage();

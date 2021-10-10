@@ -1,16 +1,15 @@
 import 'package:cbakes/checkout/dormain/delivery_options.dart';
 import 'package:cbakes/checkout/dormain/pay_method_card.dart';
 import 'package:cbakes/core/dormain/food_item.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'checkout_state_notifiers.freezed.dart';
 
-class PaymentMethodActiveNotifier extends StateNotifier<GlobalKey?> {
-  PaymentMethodActiveNotifier() : super(PayMethodCardItem.payCardItems[0].key);
+class PaymentMethodActiveNotifier extends StateNotifier<String?> {
+  PaymentMethodActiveNotifier() : super(PayMethodCardItem.payCardItems[0].name);
 
-  void setActive(GlobalKey key) {
+  void setActive(String key) {
     state = key;
   }
 }
@@ -45,6 +44,10 @@ class SideFoodItem extends FoodItem {
         other.imageUrl == imageUrl &&
         other.decription == decription;
   }
+
+  @override
+  // TODO: implement hashCode
+  int get hashCode => super.hashCode;
 }
 
 @freezed
@@ -94,7 +97,6 @@ class SideFoodItemsNotifier extends StateNotifier<SideFoodItems> {
         final sideFoodItem =
             SideFoodItem(item: item, quantity: anItem.quantity + 1);
         items[index] = sideFoodItem;
-        print("added with the add button");
       } else {
         final sideFoodItem = SideFoodItem(item: item, quantity: 1);
         if (items.contains(sideFoodItem)) {
@@ -105,7 +107,6 @@ class SideFoodItemsNotifier extends StateNotifier<SideFoodItems> {
         } else {
           items.add(sideFoodItem);
         }
-        print("added with checkout");
       }
       state = SideFoodItems(items: items, totalPrice: price);
     } catch (e) {
