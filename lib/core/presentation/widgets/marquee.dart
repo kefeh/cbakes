@@ -13,7 +13,7 @@ class AppMarquee extends StatelessWidget {
       color: const Color.fromRGBO(30, 31, 34, 1),
       child: Marquee(
         text:
-            "                                    C&C BAKERY                                     C&C RESTAURANT                                    C&C DELIVERIES",
+            "                                    Our Priority:                                     Improved Quality of Service                                  Greater Customer Satisfaction.                                    ",
         style: GoogleFonts.rubik(
           color: Colors.white,
           fontWeight: FontWeight.bold,

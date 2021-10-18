@@ -16,7 +16,7 @@ class SmallHomePage extends ConsumerWidget {
     final size = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final widthFactor = size / 7;
-    final headerSize = size * 0.1;
+    final headerSize = size * 0.07;
 
     final double widthPropotions = size / 10;
     final double heightPropotions = height / 10;
@@ -98,7 +98,7 @@ class HomeSmall extends ConsumerWidget {
                             Row(
                               children: [
                                 DroppingButtonSmall(
-                                  text: "BAKERY",
+                                  text: "PASTRY",
                                   onPressed: () => ref
                                       .read(servedPageProvider.notifier)
                                       .setCheckoutBread(),
@@ -129,14 +129,14 @@ class HomeSmall extends ConsumerWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "The best ",
+                                    "Your health",
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline1!
                                         .copyWith(fontSize: headerSize),
                                   ),
                                   Text(
-                                    "food service",
+                                    "largely depends on",
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline1!
@@ -144,14 +144,14 @@ class HomeSmall extends ConsumerWidget {
                                   ),
                                   RichText(
                                     text: TextSpan(
-                                      text: "for ",
+                                      text: "",
                                       style: Theme.of(context)
                                           .textTheme
                                           .headline1!
                                           .copyWith(fontSize: headerSize),
                                       children: [
                                         TextSpan(
-                                          text: "Everybody",
+                                          text: "what you eat",
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline1!
@@ -165,10 +165,20 @@ class HomeSmall extends ConsumerWidget {
                                       ],
                                     ),
                                   ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "C&C, your trusted and reliable food service",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2!
+                                        .copyWith(fontSize: headerSize / 2.2),
+                                  ),
                                 ],
                               ),
                               ButtonMain.activeLight(
-                                text: "explore bakery",
+                                text: "explore pastery",
                                 textSize: 13,
                                 onPressed: () => ref
                                     .read(servedPageProvider.notifier)

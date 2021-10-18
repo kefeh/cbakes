@@ -8,6 +8,8 @@ import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:cbakes/home/presentation/widgets/items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class LargeHomePage extends ConsumerWidget {
   const LargeHomePage({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class LargeHomePage extends ConsumerWidget {
     final widthFactor = size / 7;
     final height = MediaQuery.of(context).size.height;
     final heightFactor = (height / 8) - 20;
-    final headerSize = size * 0.04;
+    final headerSize = size * 0.03;
 
     final double widthPropotions = size / 10;
     final double heightPropotions = height / 10;
@@ -141,7 +143,7 @@ class HomeLarge extends ConsumerWidget {
                                 children: [
                                   DroppingButton(
                                     height: heightFactor,
-                                    text: "BAKERY",
+                                    text: "PASTRY",
                                     onPressed: () => ref
                                         .read(servedPageProvider.notifier)
                                         .setCheckoutBread(),
@@ -181,14 +183,14 @@ class HomeLarge extends ConsumerWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "The best ",
+                                            "Your health",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline1!
                                                 .copyWith(fontSize: headerSize),
                                           ),
                                           Text(
-                                            "food service",
+                                            "largely depends on",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline1!
@@ -196,7 +198,7 @@ class HomeLarge extends ConsumerWidget {
                                           ),
                                           RichText(
                                             text: TextSpan(
-                                              text: "for ",
+                                              text: "",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline1!
@@ -204,7 +206,7 @@ class HomeLarge extends ConsumerWidget {
                                                       fontSize: headerSize),
                                               children: [
                                                 TextSpan(
-                                                  text: "Everybody",
+                                                  text: "what you eat",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .headline1!
@@ -220,10 +222,21 @@ class HomeLarge extends ConsumerWidget {
                                               ],
                                             ),
                                           ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            "C&C, your trusted and reliable food service",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline2!
+                                                .copyWith(
+                                                    fontSize: headerSize / 2.2),
+                                          ),
                                         ],
                                       ),
                                       ButtonMain.activeLight(
-                                        text: "explore bakery",
+                                        text: "explore pastry",
                                         onPressed: () => ref
                                             .read(servedPageProvider.notifier)
                                             .setCheckoutBread(),
@@ -257,11 +270,11 @@ class HomeLarge extends ConsumerWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(
-                      bottom: 16.0,
+                      bottom: 8.0,
                       left: 8.0,
                     ),
                     child: Text(
-                      "Stock Overview",
+                      "Contact Us",
                       style: TextStyle(
                         color: Color.fromRGBO(51, 70, 91, 1),
                         fontSize: 16,
@@ -271,18 +284,27 @@ class HomeLarge extends ConsumerWidget {
                   ),
                   Expanded(
                     flex: 1,
-                    child: ListView.separated(
-                      itemCount: foodItems.length > 7 ? 7 : foodItems.length,
-                      separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(
-                        width: (widthFactor / 2) - 30,
-                      ),
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) {
-                        return SmallItem(
-                          foodItem: foodItems[index],
-                        );
-                      },
+                    child: Row(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            SocialMedia(
+                              caption: "+237 675 619 592",
+                              icon: MdiIcons.whatsapp,
+                            ),
+                            SocialMedia(
+                              caption: "c&c_pasteries_facebook",
+                              icon: MdiIcons.facebook,
+                            ),
+                            SocialMedia(
+                              caption: "c&c_pasteries_insta",
+                              icon: MdiIcons.instagram,
+                            ),
+                          ],
+                        )
+                      ],
                     ),
                   ),
                 ],
@@ -291,6 +313,57 @@ class HomeLarge extends ConsumerWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class SocialMedia extends StatelessWidget {
+  const SocialMedia({
+    Key? key,
+    required this.icon,
+    required this.caption,
+  }) : super(key: key);
+
+  final IconData icon;
+  final String caption;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Align(
+          child: Container(
+            height: 40,
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(246, 67, 67, 0.2),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 50.0, right: 20.0),
+                child: Text(
+                  caption,
+                  style: GoogleFonts.rubik(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          height: 40,
+          width: 40,
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondary,
+            borderRadius: BorderRadius.circular(40),
+          ),
+          child: Icon(
+            icon,
+            color: Colors.white,
+          ),
+        ),
+      ],
     );
   }
 }
