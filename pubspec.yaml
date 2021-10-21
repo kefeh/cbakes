@@ -19,6 +19,7 @@ dependencies:
   google_fonts: ^2.1.0
   hooks_riverpod: ^1.0.0-dev.7
   marquee: ^2.2.0
+  infinite_carousel: ^1.0.1
   material_design_icons_flutter: 5.0.5955-rc.1
 
 dev_dependencies:

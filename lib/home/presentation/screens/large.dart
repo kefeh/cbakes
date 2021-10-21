@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cbakes/checkout/presentation/checkout.dart';
 import 'package:cbakes/core/application/providers.dart';
 import 'package:cbakes/core/presentation/routes/app_router.gr.dart';
@@ -5,10 +7,9 @@ import 'package:cbakes/core/dormain/food_item.dart';
 import 'package:cbakes/core/presentation/widgets/helper.dart';
 import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
-import 'package:cbakes/home/presentation/widgets/items.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class LargeHomePage extends ConsumerWidget {
@@ -264,7 +265,7 @@ class HomeLarge extends ConsumerWidget {
           Expanded(
             flex: 2,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: widthFactor / 2),
+              padding: EdgeInsets.only(left: widthFactor / 2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -285,6 +286,7 @@ class HomeLarge extends ConsumerWidget {
                   Expanded(
                     flex: 1,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -303,7 +305,8 @@ class HomeLarge extends ConsumerWidget {
                               icon: MdiIcons.instagram,
                             ),
                           ],
-                        )
+                        ),
+                        const SponsorCatalogue()
                       ],
                     ),
                   ),
@@ -313,57 +316,6 @@ class HomeLarge extends ConsumerWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class SocialMedia extends StatelessWidget {
-  const SocialMedia({
-    Key? key,
-    required this.icon,
-    required this.caption,
-  }) : super(key: key);
-
-  final IconData icon;
-  final String caption;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Align(
-          child: Container(
-            height: 40,
-            decoration: BoxDecoration(
-              color: const Color.fromRGBO(246, 67, 67, 0.2),
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 50.0, right: 20.0),
-                child: Text(
-                  caption,
-                  style: GoogleFonts.rubik(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Container(
-          height: 40,
-          width: 40,
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
-            borderRadius: BorderRadius.circular(40),
-          ),
-          child: Icon(
-            icon,
-            color: Colors.white,
-          ),
-        ),
-      ],
     );
   }
 }

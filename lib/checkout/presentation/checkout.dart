@@ -12,43 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-// class CheckoutPage extends StatelessWidget {
-//   const CheckoutPage({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return LayoutBuilder(
-//       builder: (BuildContext context, BoxConstraints constraint) {
-//         final double width = constraint.maxWidth;
-//         final double height = constraint.maxHeight;
-//         final double widthPropotions = width / 10;
-//         final double heightPropotions = height / 10;
-//         final double sideBarWidth = widthPropotions * 2.5;
-//         final double mainPadding = width / 40;
-//         final bool smallScreen = width < 860;
-//         return Scaffold(
-//           body: SafeArea(
-//             child: Column(
-//               children: [
-//                 const Expanded(
-//                   flex: 1,
-//                   child: AppMarquee(),
-//                 ),
-//                 CheckoutLarge(
-//                     mainPadding: mainPadding,
-//                     smallScreen: smallScreen,
-//                     widthPropotions: widthPropotions,
-//                     sideBarWidth: sideBarWidth,
-//                     heightPropotions: heightPropotions),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
-
 class CheckoutLarge extends ConsumerWidget {
   const CheckoutLarge({
     Key? key,
