@@ -96,8 +96,11 @@ class HamBurger extends StatelessWidget {
 }
 
 class SponsorCatalogue extends StatefulWidget {
+  final double width;
+
   const SponsorCatalogue({
     Key? key,
+    required this.width,
   }) : super(key: key);
 
   @override
@@ -130,27 +133,35 @@ class _SponsorCatalogueState extends State<SponsorCatalogue> {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        minHeight: 100,
-        maxHeight: 200,
-        maxWidth: 200,
-      ),
-      child: InfiniteCarousel.builder(
-          itemCount: 10,
-          itemExtent: 150,
-          center: true,
-          anchor: 0.0,
-          velocityFactor: 0.9,
-          onIndexChanged: (index) {},
-          axisDirection: Axis.vertical,
-          loop: true,
-          controller: _controller,
-          itemBuilder: (context, itemIndex, realIndex) {
-            return SponsorCard(
-              key: Key(itemIndex.toString()),
-            );
-          }),
+    return Column(
+      children: [
+        Text("SPONSORS",
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  fontSize: 20,
+                )),
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: 100,
+            maxHeight: 200,
+            maxWidth: widget.width,
+          ),
+          child: InfiniteCarousel.builder(
+              itemCount: 10,
+              itemExtent: 150,
+              center: true,
+              anchor: 0.0,
+              velocityFactor: 0.9,
+              onIndexChanged: (index) {},
+              axisDirection: Axis.vertical,
+              loop: true,
+              controller: _controller,
+              itemBuilder: (context, itemIndex, realIndex) {
+                return SponsorCard(
+                  key: Key(itemIndex.toString()),
+                );
+              }),
+        ),
+      ],
     );
   }
 }
@@ -172,11 +183,11 @@ class SponsorCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(8.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
-                "assets/images/card.png",
+                "assets/images/njaka-logo.png",
               ),
             ),
           ),

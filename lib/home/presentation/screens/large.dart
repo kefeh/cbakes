@@ -103,7 +103,7 @@ class HomeLarge extends ConsumerWidget {
                 Align(
                   alignment: AlignmentDirectional.topEnd,
                   child: SizedBox(
-                    width: widthFactor * 1,
+                    width: widthFactor,
                     child: Stack(
                       children: [
                         Container(
@@ -137,8 +137,9 @@ class HomeLarge extends ConsumerWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    top: 16.0, right: 16.0, bottom: 16.0),
-                                child: Image.asset("assets/images/logo.png"),
+                                    top: 16.0, bottom: 16.0),
+                                child: Image.asset("assets/images/logo.png",
+                                    height: heightFactor),
                               ),
                               Row(
                                 children: [
@@ -301,12 +302,12 @@ class HomeLarge extends ConsumerWidget {
                               icon: MdiIcons.facebook,
                             ),
                             SocialMedia(
-                              caption: "c&c_pasteries_insta",
+                              caption: "c&c_pasteries_instagram",
                               icon: MdiIcons.instagram,
                             ),
                           ],
                         ),
-                        const SponsorCatalogue()
+                        SponsorCatalogue(width: widthFactor),
                       ],
                     ),
                   ),
