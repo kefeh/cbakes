@@ -6,7 +6,9 @@ import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:cbakes/home/presentation/widgets/items.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SmallHomePage extends ConsumerWidget {
   const SmallHomePage({Key? key}) : super(key: key);
@@ -219,38 +221,60 @@ class HomeSmall extends ConsumerWidget {
           ),
           Expanded(
             flex: 2,
-            child: SizedBox(
-              width: widthFactor * 6,
+            child: Padding(
+              padding: EdgeInsets.only(left: widthFactor / 2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      bottom: 16.0,
-                      left: 8.0,
-                    ),
-                    child: Text(
-                      "Stock Overview",
-                      style: TextStyle(
-                        color: Color.fromRGBO(51, 70, 91, 1),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
                   Expanded(
-                    child: ListView.separated(
-                      itemCount: foodItems.length > 7 ? 7 : foodItems.length,
-                      separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(
-                        width: (widthFactor / 3),
-                      ),
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) {
-                        return SmallItemSmall(
-                          foodItem: foodItems[index],
-                        );
-                      },
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                  height: 120,
+                                  width: 120,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child:
+                                        Image.asset("assets/images/logo.png"),
+                                  )),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SocialMedia(
+                                      icon: MdiIcons.whatsapp,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SocialMedia(
+                                      icon: MdiIcons.facebook,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SocialMedia(
+                                      icon: MdiIcons.instagram,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SponsorCatalogue(width: widthFactor),
+                      ],
                     ),
                   ),
                 ],

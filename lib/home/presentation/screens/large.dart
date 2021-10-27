@@ -292,7 +292,7 @@ class HomeLarge extends ConsumerWidget {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             SocialMedia(
                               caption: "+237 675 619 592",
                               icon: MdiIcons.whatsapp,
