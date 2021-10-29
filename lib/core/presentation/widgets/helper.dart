@@ -136,43 +136,46 @@ class _SponsorCatalogueState extends State<SponsorCatalogue> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text("PARTNERS",
-              style: Theme.of(context).textTheme.headline3!.copyWith(
-                    fontSize: 20,
-                  )),
-        ),
-        ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: 100,
-            maxHeight: 200,
-            maxWidth: widget.width > 100 ? widget.width : 100,
-            minWidth: 100,
+    final double maxWidth = widget.width > 100 ? widget.width : 100;
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("PARTNERS",
+                style: Theme.of(context).textTheme.headline3!.copyWith(
+                      fontSize: 20,
+                    )),
           ),
-          child: Consumer(builder: (context, ref, _) {
-            final sponsors = Sponsors.sponsorList;
-            return InfiniteCarousel.builder(
-                itemCount: sponsors.length,
-                itemExtent: 150,
-                center: true,
-                anchor: 0.0,
-                velocityFactor: 0.9,
-                onIndexChanged: (index) {},
-                axisDirection: Axis.vertical,
-                loop: true,
-                controller: _controller,
-                itemBuilder: (context, itemIndex, realIndex) {
-                  return SponsorCard(
-                      key: Key(sponsors[itemIndex].name),
-                      name: sponsors[itemIndex].name,
-                      imageUrl: sponsors[itemIndex].imageUrl);
-                });
-          }),
-        ),
-      ],
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: 100,
+              maxHeight: 200,
+              maxWidth: maxWidth,
+              minWidth: 100,
+            ),
+            child: Consumer(builder: (context, ref, _) {
+              final sponsors = Sponsors.sponsorList;
+              return InfiniteCarousel.builder(
+                  itemCount: sponsors.length,
+                  itemExtent: maxWidth > 100 ? 200 : 150,
+                  center: true,
+                  anchor: 0.0,
+                  velocityFactor: 0.9,
+                  onIndexChanged: (index) {},
+                  axisDirection: Axis.vertical,
+                  loop: true,
+                  controller: _controller,
+                  itemBuilder: (context, itemIndex, realIndex) {
+                    return SponsorCard(
+                        key: Key(sponsors[itemIndex].name),
+                        name: sponsors[itemIndex].name,
+                        imageUrl: sponsors[itemIndex].imageUrl);
+                  });
+            }),
+          ),
+        ],
+      ),
     );
   }
 }

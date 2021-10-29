@@ -231,10 +231,11 @@ class HomeSmall extends ConsumerWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        SponsorCatalogue(width: widthFactor),
                         Align(
                           alignment: AlignmentDirectional.centerStart,
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               SizedBox(
                                   height: 120,
@@ -273,7 +274,6 @@ class HomeSmall extends ConsumerWidget {
                             ],
                           ),
                         ),
-                        SponsorCatalogue(width: widthFactor),
                       ],
                     ),
                   ),
