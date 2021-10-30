@@ -70,7 +70,7 @@ class LargeHomePage extends ConsumerWidget {
   }
 }
 
-class HomeLarge extends ConsumerWidget {
+class HomeLarge extends StatelessWidget {
   const HomeLarge({
     Key? key,
     required this.widthFactor,
@@ -91,7 +91,7 @@ class HomeLarge extends ConsumerWidget {
   final List<FoodItem> foodItems;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Expanded(
       flex: 7,
       child: Column(
@@ -141,27 +141,29 @@ class HomeLarge extends ConsumerWidget {
                                 child: Image.asset("assets/images/logo.png",
                                     height: heightFactor),
                               ),
-                              Row(
-                                children: [
-                                  DroppingButton(
-                                    height: heightFactor,
-                                    text: "PASTRY",
-                                    onPressed: () => ref
-                                        .read(servedPageProvider.notifier)
-                                        .setCheckoutBread(),
-                                  ),
-                                  SizedBox(
-                                    width: widthFactor / 2,
-                                  ),
-                                  DroppingButton(
-                                    height: heightFactor,
-                                    text: "RESTAURANT",
-                                    onPressed: () => ref
-                                        .read(servedPageProvider.notifier)
-                                        .setCheckoutBread(),
-                                  ),
-                                ],
-                              ),
+                              Consumer(builder: (context, ref, _) {
+                                return Row(
+                                  children: [
+                                    DroppingButton(
+                                      height: heightFactor,
+                                      text: "PASTRY",
+                                      onPressed: () => ref
+                                          .read(servedPageProvider.notifier)
+                                          .setCheckoutBread(),
+                                    ),
+                                    SizedBox(
+                                      width: widthFactor / 2,
+                                    ),
+                                    DroppingButton(
+                                      height: heightFactor,
+                                      text: "RESTAURANT",
+                                      onPressed: () => ref
+                                          .read(servedPageProvider.notifier)
+                                          .setCheckoutBread(),
+                                    ),
+                                  ],
+                                );
+                              }),
                               SizedBox(
                                 width: headerSize / 2,
                               )
@@ -171,81 +173,7 @@ class HomeLarge extends ConsumerWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: size / 14),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Your health",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(fontSize: headerSize),
-                                          ),
-                                          Text(
-                                            "largely depends on",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(fontSize: headerSize),
-                                          ),
-                                          RichText(
-                                            text: TextSpan(
-                                              text: "",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1!
-                                                  .copyWith(
-                                                      fontSize: headerSize),
-                                              children: [
-                                                TextSpan(
-                                                  text: "what you eat",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline1!
-                                                      .copyWith(
-                                                        color: const Color
-                                                                .fromRGBO(
-                                                            246, 67, 67, 1),
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                        fontSize: headerSize,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 20,
-                                          ),
-                                          Text(
-                                            "C&C, your trusted and reliable food service",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline2!
-                                                .copyWith(
-                                                    fontSize: headerSize / 2.2),
-                                          ),
-                                        ],
-                                      ),
-                                      ButtonMain.activeLight(
-                                        text: "explore pastry",
-                                        onPressed: () => ref
-                                            .read(servedPageProvider.notifier)
-                                            .setCheckoutBread(),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                TitleAndCTA(size: size, headerSize: headerSize),
                                 AspectRatio(
                                   aspectRatio: size / height,
                                   child: Image.asset(
@@ -295,15 +223,15 @@ class HomeLarge extends ConsumerWidget {
                           children: [
                             SocialMedia(
                               caption: "+237 675 619 592",
+                              icon: MdiIcons.phone,
+                            ),
+                            SocialMedia(
+                              caption: "+237 675 619 592",
                               icon: MdiIcons.whatsapp,
                             ),
                             SocialMedia(
-                              caption: "c&c_pasteries_facebook",
+                              caption: "C&C_foods_facebook",
                               icon: MdiIcons.facebook,
-                            ),
-                            SocialMedia(
-                              caption: "c&c_pasteries_instagram",
-                              icon: MdiIcons.instagram,
                             ),
                           ],
                         ),

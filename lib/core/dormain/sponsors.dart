@@ -8,7 +8,6 @@ class Sponsors {
   });
 
   static final sponsorList = [
-    Sponsors(name: "Njaka", imageUrl: "assets/images/njaka-logo.png"),
-    Sponsors(name: "c&cfoods", imageUrl: "assets/images/logo.png"),
+    Sponsors(name: "c&cfoods", imageUrl: "assets/images/tec_logo.png"),
   ];
 }

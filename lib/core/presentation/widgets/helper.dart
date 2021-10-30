@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cbakes/core/application/providers.dart';
 import 'package:cbakes/core/dormain/sponsors.dart';
+import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -138,43 +139,32 @@ class _SponsorCatalogueState extends State<SponsorCatalogue> {
   Widget build(BuildContext context) {
     final double maxWidth = widget.width > 100 ? widget.width : 100;
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("PARTNERS",
-                style: Theme.of(context).textTheme.headline3!.copyWith(
-                      fontSize: 20,
-                    )),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: 100,
-              maxHeight: 200,
-              maxWidth: maxWidth,
-              minWidth: 100,
-            ),
-            child: Consumer(builder: (context, ref, _) {
-              final sponsors = Sponsors.sponsorList;
-              return InfiniteCarousel.builder(
-                  itemCount: sponsors.length,
-                  itemExtent: maxWidth > 100 ? 200 : 150,
-                  center: true,
-                  anchor: 0.0,
-                  velocityFactor: 0.9,
-                  onIndexChanged: (index) {},
-                  axisDirection: Axis.vertical,
-                  loop: true,
-                  controller: _controller,
-                  itemBuilder: (context, itemIndex, realIndex) {
-                    return SponsorCard(
-                        key: Key(sponsors[itemIndex].name),
-                        name: sponsors[itemIndex].name,
-                        imageUrl: sponsors[itemIndex].imageUrl);
-                  });
-            }),
-          ),
-        ],
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: 100,
+          maxHeight: 200,
+          maxWidth: maxWidth,
+          minWidth: 100,
+        ),
+        child: Consumer(builder: (context, ref, _) {
+          final sponsors = Sponsors.sponsorList;
+          return InfiniteCarousel.builder(
+              itemCount: sponsors.length,
+              itemExtent: maxWidth > 100 ? 200 : 150,
+              center: true,
+              anchor: 0.0,
+              velocityFactor: 0.9,
+              onIndexChanged: (index) {},
+              axisDirection: Axis.vertical,
+              loop: true,
+              controller: _controller,
+              itemBuilder: (context, itemIndex, realIndex) {
+                return SponsorCard(
+                    key: Key(sponsors[itemIndex].name),
+                    name: sponsors[itemIndex].name,
+                    imageUrl: sponsors[itemIndex].imageUrl);
+              });
+        }),
       ),
     );
   }
@@ -268,6 +258,124 @@ class SocialMedia extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class SubtitleHome extends StatelessWidget {
+  const SubtitleHome({
+    Key? key,
+    required this.headerSize,
+  }) : super(key: key);
+
+  final double headerSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        text: "c",
+        style: Theme.of(context).textTheme.headline2!.copyWith(
+              fontSize: headerSize / 2.2,
+              color: const Color(0xFFF50C0C),
+            ),
+        children: [
+          TextSpan(
+            text: "&",
+            style: Theme.of(context).textTheme.headline2!.copyWith(
+                  color: const Color(0xFF0F95F5),
+                  fontSize: headerSize / 2.2,
+                ),
+          ),
+          TextSpan(
+            text: "c",
+            style: Theme.of(context).textTheme.headline2!.copyWith(
+                  color: const Color.fromRGBO(246, 67, 67, 1),
+                  fontSize: headerSize / 2.2,
+                ),
+          ),
+          TextSpan(
+            text: " your trusted and reliable food service",
+            style: Theme.of(context).textTheme.headline2!.copyWith(
+                  fontSize: headerSize / 2.2,
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TitleAndCTA extends StatelessWidget {
+  const TitleAndCTA({
+    Key? key,
+    required this.size,
+    required this.headerSize,
+  }) : super(key: key);
+
+  final double size;
+  final double headerSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: size / 14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Your health",
+                style: Theme.of(context)
+                    .textTheme
+                    .headline1!
+                    .copyWith(fontSize: headerSize),
+              ),
+              Text(
+                "largely depends on",
+                style: Theme.of(context)
+                    .textTheme
+                    .headline1!
+                    .copyWith(fontSize: headerSize),
+              ),
+              RichText(
+                text: TextSpan(
+                  text: "",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1!
+                      .copyWith(fontSize: headerSize),
+                  children: [
+                    TextSpan(
+                      text: "what you eat.",
+                      style: Theme.of(context).textTheme.headline1!.copyWith(
+                            color: const Color.fromRGBO(246, 67, 67, 1),
+                            fontStyle: FontStyle.italic,
+                            fontSize: headerSize,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              SubtitleHome(headerSize: headerSize),
+            ],
+          ),
+          Consumer(builder: (context, ref, _) {
+            return ButtonMain.activeLight(
+              text: "explore pastry",
+              onPressed: () =>
+                  ref.read(servedPageProvider.notifier).setCheckoutBread(),
+            );
+          }),
+        ],
+      ),
     );
   }
 }

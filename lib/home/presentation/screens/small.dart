@@ -120,76 +120,8 @@ class HomeSmall extends ConsumerWidget {
                         ),
                       ),
                       Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: size / 14),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Your health",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1!
-                                        .copyWith(fontSize: headerSize),
-                                  ),
-                                  Text(
-                                    "largely depends on",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1!
-                                        .copyWith(fontSize: headerSize),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(fontSize: headerSize),
-                                      children: [
-                                        TextSpan(
-                                          text: "what you eat",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                color: const Color.fromRGBO(
-                                                    246, 67, 67, 1),
-                                                fontStyle: FontStyle.italic,
-                                                fontSize: headerSize,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    "C&C, your trusted and reliable food service",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline2!
-                                        .copyWith(fontSize: headerSize / 2.2),
-                                  ),
-                                ],
-                              ),
-                              ButtonMain.activeLight(
-                                text: "explore pastery",
-                                textSize: 13,
-                                onPressed: () => ref
-                                    .read(servedPageProvider.notifier)
-                                    .setCheckoutBread(),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                          child:
+                              TitleAndCTA(size: size, headerSize: headerSize)),
                     ],
                   ),
                 ),
