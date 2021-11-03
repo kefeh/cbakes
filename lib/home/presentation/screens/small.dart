@@ -195,18 +195,22 @@ class HomeSmall extends ConsumerWidget {
                                             padding: EdgeInsets.all(8.0),
                                             child: SocialMedia(
                                               icon: MdiIcons.phone,
+                                              link: "tel:+237675409073",
                                             ),
                                           ),
                                           Padding(
                                             padding: EdgeInsets.all(8.0),
                                             child: SocialMedia(
                                               icon: MdiIcons.whatsapp,
+                                              link: "tel:+237675409073",
                                             ),
                                           ),
                                           Padding(
                                             padding: EdgeInsets.all(8.0),
                                             child: SocialMedia(
                                               icon: MdiIcons.facebook,
+                                              link:
+                                                  "https://facebook.com/C&C_foods_facebook",
                                             ),
                                           ),
                                         ],

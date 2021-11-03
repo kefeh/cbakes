@@ -238,6 +238,8 @@ class HomeLarge extends StatelessWidget {
                                   SocialMedia(
                                     caption: "C&C_foods_facebook",
                                     icon: MdiIcons.facebook,
+                                    link:
+                                        "https://facebook.com/C&C_foods_facebook",
                                   ),
                                 ],
                               ),

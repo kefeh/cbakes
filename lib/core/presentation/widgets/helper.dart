@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_carousel/infinite_carousel.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HamBurger extends StatelessWidget {
   final double padding;
@@ -149,21 +150,24 @@ class _SponsorCatalogueState extends State<SponsorCatalogue> {
         child: Consumer(builder: (context, ref, _) {
           final sponsors = Sponsors.sponsorList;
           return InfiniteCarousel.builder(
-              itemCount: sponsors.length,
-              itemExtent: maxWidth > 100 ? 200 : 120,
-              center: true,
-              anchor: 0.0,
-              velocityFactor: 0.9,
-              onIndexChanged: (index) {},
-              axisDirection: Axis.vertical,
-              loop: true,
-              controller: _controller,
-              itemBuilder: (context, itemIndex, realIndex) {
-                return SponsorCard(
-                    key: Key(sponsors[itemIndex].name),
-                    name: sponsors[itemIndex].name,
-                    imageUrl: sponsors[itemIndex].imageUrl);
-              });
+            itemCount: sponsors.length,
+            itemExtent: maxWidth > 100 ? 200 : 120,
+            center: true,
+            anchor: 0.0,
+            velocityFactor: 0.9,
+            onIndexChanged: (index) {},
+            axisDirection: Axis.vertical,
+            loop: true,
+            controller: _controller,
+            itemBuilder: (context, itemIndex, realIndex) {
+              return SponsorCard(
+                key: Key(sponsors[itemIndex].name),
+                name: sponsors[itemIndex].name,
+                imageUrl: sponsors[itemIndex].imageUrl,
+                link: sponsors[itemIndex].link,
+              );
+            },
+          );
         }),
       ),
     );
@@ -173,40 +177,45 @@ class _SponsorCatalogueState extends State<SponsorCatalogue> {
 class SponsorCard extends StatelessWidget {
   final String name;
   final String imageUrl;
+  final String link;
   const SponsorCard({
     Key? key,
     required this.name,
     required this.imageUrl,
+    required this.link,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          height: 100,
-          width: 100,
-          decoration: BoxDecoration(
-            color: const Color.fromRGBO(246, 67, 67, 0.2),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
+    return InkWell(
+      onTap: () => launch(link),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 100,
+            width: 100,
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(246, 67, 67, 0.2),
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                imageUrl,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  imageUrl,
+                ),
               ),
             ),
           ),
-        ),
-        // Text(name,
-        //     overflow: TextOverflow.ellipsis,
-        //     style: Theme.of(context).textTheme.headline3!.copyWith(
-        //           fontSize: 20,
-        //         )),
-      ],
+          // Text(name,
+          //     overflow: TextOverflow.ellipsis,
+          //     style: Theme.of(context).textTheme.headline3!.copyWith(
+          //           fontSize: 20,
+          //         )),
+        ],
+      ),
     );
   }
 }
@@ -216,58 +225,67 @@ class SocialMedia extends StatelessWidget {
     Key? key,
     this.caption,
     required this.icon,
+    this.link,
     this.size = 40,
   }) : super(key: key);
 
   final IconData icon;
   final String? caption;
+  final String? link;
   final double size;
 
-  factory SocialMedia.small({required icon, caption}) => SocialMedia(
+  factory SocialMedia.small({required icon, required link, caption}) =>
+      SocialMedia(
         icon: icon,
+        link: link,
         caption: caption,
         size: 30,
       );
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        if (caption != null)
-          Align(
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(246, 67, 67, 0.2),
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 50.0, right: 20.0),
-                  child: Text(
-                    caption!,
-                    style: GoogleFonts.rubik(
-                      color: Colors.black,
+    return InkWell(
+      onTap: () => {
+        if (link != null) {launch(link!)}
+      },
+      child: Stack(
+        children: [
+          if (caption != null)
+            Align(
+              child: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(246, 67, 67, 0.2),
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 50.0, right: 20.0),
+                    child: Text(
+                      caption!,
+                      style: GoogleFonts.rubik(
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
+          Container(
+            height: size,
+            width: size,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: Icon(
+              icon,
+              size: size / 2,
+              color: Colors.white,
+            ),
           ),
-        Container(
-          height: size,
-          width: size,
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
-            borderRadius: BorderRadius.circular(40),
-          ),
-          child: Icon(
-            icon,
-            size: size / 2,
-            color: Colors.white,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

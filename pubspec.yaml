@@ -21,6 +21,7 @@ dependencies:
   marquee: ^2.2.0
   infinite_carousel: ^1.0.1
   material_design_icons_flutter: 5.0.5955-rc.1
+  url_launcher: ^6.0.12
 
 dev_dependencies:
   freezed:
