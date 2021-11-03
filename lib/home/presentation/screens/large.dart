@@ -10,6 +10,7 @@ import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class LargeHomePage extends ConsumerWidget {
@@ -217,23 +218,58 @@ class HomeLarge extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SocialMedia(
-                              caption: "+237 675 619 592",
-                              icon: MdiIcons.phone,
-                            ),
-                            SocialMedia(
-                              caption: "+237 675 619 592",
-                              icon: MdiIcons.whatsapp,
-                            ),
-                            SocialMedia(
-                              caption: "C&C_foods_facebook",
-                              icon: MdiIcons.facebook,
-                            ),
-                          ],
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  SocialMedia(
+                                    caption: "+237 675 409 073",
+                                    icon: MdiIcons.phone,
+                                  ),
+                                  SocialMedia(
+                                    caption: "+237 675 409 073",
+                                    icon: MdiIcons.whatsapp,
+                                  ),
+                                  SocialMedia(
+                                    caption: "C&C_foods_facebook",
+                                    icon: MdiIcons.facebook,
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Virgin Land, \nFoncha Street - Bamenda, \nNWR, Cameroon. \nPhone: +237 6 75 40 90 73",
+                                    textAlign: TextAlign.right,
+                                    style: GoogleFonts.rubik(
+                                      color: Colors.black,
+                                      height: 2.5,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 16.0,
+                                      bottom: 8.0,
+                                    ),
+                                    child: Container(
+                                      height: double.infinity,
+                                      width: 5,
+                                      decoration: BoxDecoration(
+                                        color: Colors.redAccent,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                         SponsorCatalogue(width: widthFactor),
                       ],

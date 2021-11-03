@@ -142,7 +142,7 @@ class _SponsorCatalogueState extends State<SponsorCatalogue> {
       child: ConstrainedBox(
         constraints: BoxConstraints(
           minHeight: 100,
-          maxHeight: 200,
+          maxHeight: maxWidth > 100 ? 200 : 120,
           maxWidth: maxWidth,
           minWidth: 100,
         ),
@@ -150,7 +150,7 @@ class _SponsorCatalogueState extends State<SponsorCatalogue> {
           final sponsors = Sponsors.sponsorList;
           return InfiniteCarousel.builder(
               itemCount: sponsors.length,
-              itemExtent: maxWidth > 100 ? 200 : 150,
+              itemExtent: maxWidth > 100 ? 200 : 120,
               center: true,
               anchor: 0.0,
               velocityFactor: 0.9,
@@ -182,6 +182,7 @@ class SponsorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           height: 100,
@@ -200,25 +201,33 @@ class SponsorCard extends StatelessWidget {
             ),
           ),
         ),
-        Text(name,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.headline3!.copyWith(
-                  fontSize: 20,
-                )),
+        // Text(name,
+        //     overflow: TextOverflow.ellipsis,
+        //     style: Theme.of(context).textTheme.headline3!.copyWith(
+        //           fontSize: 20,
+        //         )),
       ],
     );
   }
 }
 
 class SocialMedia extends StatelessWidget {
-  SocialMedia({
+  const SocialMedia({
     Key? key,
     this.caption,
     required this.icon,
+    this.size = 40,
   }) : super(key: key);
 
   final IconData icon;
-  String? caption;
+  final String? caption;
+  final double size;
+
+  factory SocialMedia.small({required icon, caption}) => SocialMedia(
+        icon: icon,
+        caption: caption,
+        size: 30,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -246,14 +255,15 @@ class SocialMedia extends StatelessWidget {
             ),
           ),
         Container(
-          height: 40,
-          width: 40,
+          height: size,
+          width: size,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(40),
           ),
           child: Icon(
             icon,
+            size: size / 2,
             color: Colors.white,
           ),
         ),
@@ -274,10 +284,11 @@ class SubtitleHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text: "c",
+        text: "C",
         style: Theme.of(context).textTheme.headline2!.copyWith(
               fontSize: headerSize / 2.2,
               color: const Color(0xFFF50C0C),
+              fontWeight: FontWeight.bold,
             ),
         children: [
           TextSpan(
@@ -285,17 +296,19 @@ class SubtitleHome extends StatelessWidget {
             style: Theme.of(context).textTheme.headline2!.copyWith(
                   color: const Color(0xFF0F95F5),
                   fontSize: headerSize / 2.2,
+                  fontWeight: FontWeight.bold,
                 ),
           ),
           TextSpan(
-            text: "c",
+            text: "C",
             style: Theme.of(context).textTheme.headline2!.copyWith(
                   color: const Color.fromRGBO(246, 67, 67, 1),
                   fontSize: headerSize / 2.2,
+                  fontWeight: FontWeight.bold,
                 ),
           ),
           TextSpan(
-            text: " your trusted and reliable food service",
+            text: ",  your trusted and reliable food service.",
             style: Theme.of(context).textTheme.headline2!.copyWith(
                   fontSize: headerSize / 2.2,
                 ),

@@ -13,7 +13,7 @@ class AppMarquee extends StatelessWidget {
       color: const Color.fromRGBO(30, 31, 34, 1),
       child: Marquee(
         text:
-            "                                    Our Priority:                                     Improved Quality of Service                                  Greater Customer Satisfaction.                                    ",
+            "                                    Our Priority:                                     Improved Quality of Service,                                  Greater Customer Satisfaction.                                    ",
         style: GoogleFonts.rubik(
           color: Colors.white,
           fontWeight: FontWeight.bold,

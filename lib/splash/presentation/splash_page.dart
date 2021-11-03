@@ -9,7 +9,7 @@ class SplashPage extends StatelessWidget {
       backgroundColor: const Color.fromRGBO(30, 31, 34, 1),
       body: SafeArea(
         child: Center(
-          child: Image.asset('assets/images/LGO.png'),
+          child: Image.asset('assets/images/logo.png'),
         ),
       ),
     );

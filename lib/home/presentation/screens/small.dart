@@ -5,8 +5,10 @@ import 'package:cbakes/core/presentation/widgets/helper.dart';
 import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
 import 'package:cbakes/home/presentation/widgets/items.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -160,50 +162,79 @@ class HomeSmall extends ConsumerWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(
                       children: [
-                        SponsorCatalogue(width: widthFactor),
-                        Align(
-                          alignment: AlignmentDirectional.centerStart,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
-                                  height: 120,
-                                  width: 120,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child:
-                                        Image.asset("assets/images/logo.png"),
-                                  )),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SocialMedia(
-                                      icon: MdiIcons.whatsapp,
-                                    ),
+                              SponsorCatalogue(width: widthFactor),
+                              Align(
+                                alignment: AlignmentDirectional.centerStart,
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 15.0, vertical: 8),
+                                        child: SizedBox(
+                                            height: 60,
+                                            width: 60,
+                                            child: Image.asset(
+                                                "assets/images/logo.png")),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: const [
+                                          Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: SocialMedia(
+                                              icon: MdiIcons.phone,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: SocialMedia(
+                                              icon: MdiIcons.whatsapp,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: SocialMedia(
+                                              icon: MdiIcons.facebook,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SocialMedia(
-                                      icon: MdiIcons.facebook,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SocialMedia(
-                                      icon: MdiIcons.instagram,
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
                             ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            width: 300,
+                            child: Text(
+                              'Virgin Land, Foncha Street - Bamenda, NWR, Cameroon. Phone: +237 6 75 40 90 73',
+                              softWrap: true,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline2!
+                                  .copyWith(
+                                    fontSize: 12,
+                                    color: Colors.black54,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       ],
