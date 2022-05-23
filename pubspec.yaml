@@ -8,7 +8,7 @@ environment:
   sdk: '>=2.14.0 <3.0.0'
 
 dependencies:
-  auto_route: ^2.3.0
+  auto_route: ^3.0.4
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0
   flutter:
@@ -16,17 +16,17 @@ dependencies:
   flutter_hooks: ^0.18.0
   flutter_riverpod: ^1.0.0-dev.7
   freezed_annotation: 
-  google_fonts: ^2.1.0
+  google_fonts: 2.2.0
   hooks_riverpod: ^1.0.0-dev.7
   marquee: ^2.2.0
   infinite_carousel: ^1.0.1
-  material_design_icons_flutter: 5.0.5955-rc.1
+  material_design_icons_flutter: ^5.0.6595
   url_launcher: ^6.0.12
 
 dev_dependencies:
   freezed:
-  auto_route_generator: ^2.1.0
-  build_runner: ^2.1.1
+  auto_route_generator: ^3.0.1
+  build_runner: ^2.1.11
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter

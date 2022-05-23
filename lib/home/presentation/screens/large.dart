@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cbakes/checkout/presentation/checkout.dart';
 import 'package:cbakes/core/application/providers.dart';
 import 'package:cbakes/core/presentation/routes/app_router.gr.dart';
@@ -7,7 +5,6 @@ import 'package:cbakes/core/dormain/food_item.dart';
 import 'package:cbakes/core/presentation/widgets/helper.dart';
 import 'package:cbakes/core/presentation/widgets/marquee.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';

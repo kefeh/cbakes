@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:cbakes/core/presentation/routes/app_router.gr.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
@@ -24,12 +23,16 @@ class MainWidget extends ConsumerWidget {
     ]);
     final appRouter = AutoRouter();
     final textTheme = Theme.of(context).textTheme;
-    ref.listen(initializationProvider, (_) {
-      appRouter.pushAndPopUntil(
-        const HomeRoute(),
-        predicate: (predicate) => true,
-      );
-    });
+    ref.listen(
+      initializationProvider,
+      (_, __) {
+        appRouter.pushAndPopUntil(
+          const HomeRoute(),
+          predicate: (predicate) => true,
+        );
+      },
+    );
+
     return MaterialApp.router(
       routeInformationParser: appRouter.defaultRouteParser(),
       routerDelegate: appRouter.delegate(),

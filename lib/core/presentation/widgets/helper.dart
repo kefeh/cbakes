@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:cbakes/core/application/providers.dart';
 import 'package:cbakes/core/dormain/sponsors.dart';
 import 'package:cbakes/home/presentation/widgets/buttons.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -188,7 +187,7 @@ class SponsorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => launch(link),
+      onTap: () => launchUrl(Uri.parse(link)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -246,7 +245,12 @@ class SocialMedia extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => {
-        if (link != null) {launch(link!)}
+        if (link != null)
+          {
+            launchUrl(
+              Uri.parse(link!),
+            ),
+          }
       },
       child: Stack(
         children: [

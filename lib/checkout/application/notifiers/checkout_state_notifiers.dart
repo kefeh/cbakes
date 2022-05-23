@@ -110,7 +110,6 @@ class SideFoodItemsNotifier extends StateNotifier<SideFoodItems> {
       }
       state = SideFoodItems(items: items, totalPrice: price);
     } catch (e) {
-      print(e);
       // will handle later
     }
   }

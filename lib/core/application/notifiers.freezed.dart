@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'notifiers.dart';
@@ -11,27 +12,7 @@ part of 'notifiers.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ServedPageTearOff {
-  const _$ServedPageTearOff();
-
-  _Home home() {
-    return const _Home();
-  }
-
-  _CheckoutBread checkoutBread() {
-    return const _CheckoutBread();
-  }
-
-  _CheckoutRestaurant checkoutRestaurant() {
-    return const _CheckoutRestaurant();
-  }
-}
-
-/// @nodoc
-const $ServedPage = _$ServedPageTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ServedPage {
@@ -98,19 +79,19 @@ class _$ServedPageCopyWithImpl<$Res> implements $ServedPageCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$HomeCopyWith<$Res> {
-  factory _$HomeCopyWith(_Home value, $Res Function(_Home) then) =
-      __$HomeCopyWithImpl<$Res>;
+abstract class _$$_HomeCopyWith<$Res> {
+  factory _$$_HomeCopyWith(_$_Home value, $Res Function(_$_Home) then) =
+      __$$_HomeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$HomeCopyWithImpl<$Res> extends _$ServedPageCopyWithImpl<$Res>
-    implements _$HomeCopyWith<$Res> {
-  __$HomeCopyWithImpl(_Home _value, $Res Function(_Home) _then)
-      : super(_value, (v) => _then(v as _Home));
+class __$$_HomeCopyWithImpl<$Res> extends _$ServedPageCopyWithImpl<$Res>
+    implements _$$_HomeCopyWith<$Res> {
+  __$$_HomeCopyWithImpl(_$_Home _value, $Res Function(_$_Home) _then)
+      : super(_value, (v) => _then(v as _$_Home));
 
   @override
-  _Home get _value => super._value as _Home;
+  _$_Home get _value => super._value as _$_Home;
 }
 
 /// @nodoc
@@ -125,7 +106,8 @@ class _$_Home extends _Home {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Home);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Home);
   }
 
   @override
@@ -206,21 +188,22 @@ abstract class _Home extends ServedPage {
 }
 
 /// @nodoc
-abstract class _$CheckoutBreadCopyWith<$Res> {
-  factory _$CheckoutBreadCopyWith(
-          _CheckoutBread value, $Res Function(_CheckoutBread) then) =
-      __$CheckoutBreadCopyWithImpl<$Res>;
+abstract class _$$_CheckoutBreadCopyWith<$Res> {
+  factory _$$_CheckoutBreadCopyWith(
+          _$_CheckoutBread value, $Res Function(_$_CheckoutBread) then) =
+      __$$_CheckoutBreadCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$CheckoutBreadCopyWithImpl<$Res> extends _$ServedPageCopyWithImpl<$Res>
-    implements _$CheckoutBreadCopyWith<$Res> {
-  __$CheckoutBreadCopyWithImpl(
-      _CheckoutBread _value, $Res Function(_CheckoutBread) _then)
-      : super(_value, (v) => _then(v as _CheckoutBread));
+class __$$_CheckoutBreadCopyWithImpl<$Res>
+    extends _$ServedPageCopyWithImpl<$Res>
+    implements _$$_CheckoutBreadCopyWith<$Res> {
+  __$$_CheckoutBreadCopyWithImpl(
+      _$_CheckoutBread _value, $Res Function(_$_CheckoutBread) _then)
+      : super(_value, (v) => _then(v as _$_CheckoutBread));
 
   @override
-  _CheckoutBread get _value => super._value as _CheckoutBread;
+  _$_CheckoutBread get _value => super._value as _$_CheckoutBread;
 }
 
 /// @nodoc
@@ -235,7 +218,8 @@ class _$_CheckoutBread extends _CheckoutBread {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _CheckoutBread);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CheckoutBread);
   }
 
   @override
@@ -316,22 +300,22 @@ abstract class _CheckoutBread extends ServedPage {
 }
 
 /// @nodoc
-abstract class _$CheckoutRestaurantCopyWith<$Res> {
-  factory _$CheckoutRestaurantCopyWith(
-          _CheckoutRestaurant value, $Res Function(_CheckoutRestaurant) then) =
-      __$CheckoutRestaurantCopyWithImpl<$Res>;
+abstract class _$$_CheckoutRestaurantCopyWith<$Res> {
+  factory _$$_CheckoutRestaurantCopyWith(_$_CheckoutRestaurant value,
+          $Res Function(_$_CheckoutRestaurant) then) =
+      __$$_CheckoutRestaurantCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$CheckoutRestaurantCopyWithImpl<$Res>
+class __$$_CheckoutRestaurantCopyWithImpl<$Res>
     extends _$ServedPageCopyWithImpl<$Res>
-    implements _$CheckoutRestaurantCopyWith<$Res> {
-  __$CheckoutRestaurantCopyWithImpl(
-      _CheckoutRestaurant _value, $Res Function(_CheckoutRestaurant) _then)
-      : super(_value, (v) => _then(v as _CheckoutRestaurant));
+    implements _$$_CheckoutRestaurantCopyWith<$Res> {
+  __$$_CheckoutRestaurantCopyWithImpl(
+      _$_CheckoutRestaurant _value, $Res Function(_$_CheckoutRestaurant) _then)
+      : super(_value, (v) => _then(v as _$_CheckoutRestaurant));
 
   @override
-  _CheckoutRestaurant get _value => super._value as _CheckoutRestaurant;
+  _$_CheckoutRestaurant get _value => super._value as _$_CheckoutRestaurant;
 }
 
 /// @nodoc
@@ -346,7 +330,8 @@ class _$_CheckoutRestaurant extends _CheckoutRestaurant {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _CheckoutRestaurant);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CheckoutRestaurant);
   }
 
   @override
