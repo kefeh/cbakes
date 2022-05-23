@@ -13,25 +13,25 @@ class FoodItem {
 
   static final items = [
     FoodItem(
-      name: "Beef Stake",
+      name: "Doughnuts",
       decription:
-          "Succulent pieces of boneless chicken marinated in ginger and garlic, spiced with freshly pounded black peppercorns, gram flour and chargrilled with beaten egg yolk.",
-      price: 4000,
-      imageUrl: "assets/images/card.png",
+          "Tasty and yummy, baked doughnuts. Each order contains 60 packets, and delivery is within 24hrs",
+      price: 5000,
+      imageUrl: "assets/images/doughnuts.jpg",
     ),
     FoodItem(
-      name: "Brown chocolate",
+      name: "Custom Birthday cake",
       decription:
-          "Juicy 1-lb Kolmar Farms cheeseburger with roasted garlic aioli on a brioche bun",
-      price: 1500,
-      imageUrl: "assets/images/chocolate.jpg",
+          "Customise your cake, and make your birthdays have a unique touch",
+      price: 15000,
+      imageUrl: "assets/images/cake_1.jpg",
     ),
     FoodItem(
-      name: "Crispy Cake",
+      name: "Custom Birthday cake vanilla",
       decription:
           "And garlic, spiced with freshly pounded black peppercorns roasted garlic aioli on a brioche bun",
       price: 1500,
-      imageUrl: "assets/images/cake.jpg",
+      imageUrl: "assets/images/cake_2.jpg",
     ),
     FoodItem(
       name: "Fufu and Njama Njama",
